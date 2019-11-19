@@ -32,14 +32,13 @@ body,
 }
 
 .user-input > input {
-  /* font-size: calc(10px + 2vmin); */
-  margin: 10px;
+  margin: 10px 0;
   font-size: large;
   flex: 0 0 5vh;
   width: 50%;
 }
 
-.user-input div {
+.two-column-div {
   width: 50%;
   flex: 0 0 6vh;
   display: flex;
@@ -49,9 +48,9 @@ body,
   justify-content: space-between;
 }
 
+.form-button,
 .hotel-price {
   font-size: large;
-  /* font-size: calc(10px + 2vmin); */
   flex: 0 0 45%;
   height: 5vh;
 }
