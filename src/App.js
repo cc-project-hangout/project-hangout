@@ -8,6 +8,9 @@ function App() {
         <p>
           THIS IS A PLACEHOLDER FOR ALL THE INFO
         </p>
+        <p>
+          HELLO THERE
+        </p>
       </header>
     </div>
   );

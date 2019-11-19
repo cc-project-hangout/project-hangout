@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-// const {getEvents} = require('./utils/Events');
+// const {getEvents} = require('./utils/Events/getEvents');
 // const {getHotels} = require('./utils/Hotels');
 
 // const morgan = require("morgan");
