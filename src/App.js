@@ -7,6 +7,7 @@ function App() {
       <header className="App-header">
         <p>
           THIS IS A PLACEHOLDER FOR ALL THE INFO
+          HELLO
         </p>
       </header>
     </div>
