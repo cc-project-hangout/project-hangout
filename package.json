@@ -9,7 +9,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.2.0",
-    "unirest": "^0.6.0"
+    "unirest": "^0.6.0",
+    "xml-js": "^1.6.11"
   },
   "scripts": {
     "build": "react-scripts build",
