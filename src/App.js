@@ -213,8 +213,7 @@ export default class App extends React.Component {
                   this.handleBackOrCancel(e);
                 }}
               >
-                {" "}
-                GO BACK TO SEARCH{" "}
+                GO BACK TO SEARCH
               </button>
             </form>
             <div>
