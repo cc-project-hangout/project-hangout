@@ -1,0 +1,9 @@
+
+#eventContainer {
+    display:flex;
+    flex-direction:column;
+}
+#image {
+    height:15%;
+    width:15%;
+}
