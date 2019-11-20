@@ -13,6 +13,10 @@ export default class Hotels extends Component {
   }
 
   componentDidMount() {
+    this.getHotels();
+  }
+
+  getHotels = () => {
     axios
       .post("api/hotels", {
         city: this.props.cityName,
@@ -30,7 +34,7 @@ export default class Hotels extends Component {
       .catch(err => {
         console.log("Error: ", err);
       });
-  }
+  };
 
   getNextHotel = () => {
     const hotelAmount = this.state.hotels.length - 1;

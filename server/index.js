@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const { loadHotels } = require("./utils/Hotels/loadHotels")
+const { loadHotels } = require("./utils/Hotels/loadHotels");
 const { getEvents } = require("./utils/Events/getEvents");
 
 // const morgan = require("morgan");
@@ -16,14 +16,14 @@ app.post("/api/hotels", async (req, res) => {
     const cityInfo = req.body;
     const hotels = await loadHotels(cityInfo);
     res.json(hotels);
-  }catch(e) {
-    throw new Error('hotel error');
+  } catch (e) {
+    throw new Error("hotel error");
   }
 });
 
 app.post("/api/events", async (req, res) => {
   try {
-    console.log('h')
+    console.log("h");
     const events = await getEvents(req.body.city, req.body.date);
     res.json(events);
   } catch (e) {
