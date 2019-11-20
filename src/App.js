@@ -140,6 +140,7 @@ export default class App extends React.Component {
             </div>
           </form>
         ) : (
+          <div>
           <form className="user-input" value="">
             <button
               className="goHome"
@@ -150,7 +151,8 @@ export default class App extends React.Component {
               {" "}
               GO BACK TO SEARCH{" "}
             </button>
-            <p>
+          </form>
+          <div>
               <Events />
               <Hotels
                 cityName={this.state.selections.cityName}
@@ -159,8 +161,8 @@ export default class App extends React.Component {
                 minPrice={this.state.selections.minPrice}
                 maxPrice={this.state.selections.maxPrice}
               />
-            </p>
-          </form>
+            </div>
+          </div>
         )}
       </div>
     );
