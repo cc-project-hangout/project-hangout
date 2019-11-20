@@ -24,9 +24,13 @@ app.post("/api/hotels", async (req, res) => {
 });
 
 app.post("/api/events", async (req, res) => {
-  const events = await getEvents(req.body.city, req.body.date);
-  res.json(events);
-  res.sendStatus(200);
+  try {
+    const events = await getEvents(req.body.city, req.body.date);
+    res.json(events);
+    res.sendStatus(200);
+  } catch (e) {
+    throw new Error("hotel error");
+  }
 });
 
 module.exports = app;
