@@ -2,27 +2,67 @@ html,
 body,
 #root,
 .App {
+  display: flex;
   width: 100%;
+  flex: 1 1 100%;
+  justify-content: center;
+  align-content: center;
   height: 100%;
   margin: 0;
   padding: 0;
   background-color: #282c34;
 }
 .App {
+  flex: 1 1 60%;
   display: flex;
-  width: 70%;
   flex-flow: row;
   justify-content: center;
-  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-/* .App-logo {
-  height: 40vmin;
-} */
+#blinder {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2a5dc2;
+  opacity: 90%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#blinder h1,h2 {
+  flex: 0 1 5%;
+  text-align: center;
+  width: 60%;
+  color: white;
+}
+
+.app-name {
+  flex: 0 1 70%;
+  height: 250px;
+  text-align: center;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.app-name img {
+  padding-top: 50px;
+  flex: 0 0 300px;
+  height: 300px;
+  margin: 0;
+}
 
 .user-input {
-  height:5%;
-  flex: 1 1 70%;
+  height:90%;
+  flex: 0 1 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,7 +114,6 @@ body,
   height: 100%;
   width:100%;
   justify-content: center;
-  align-content:center;
   align-items: center;
 }
 
