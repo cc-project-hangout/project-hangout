@@ -1,0 +1,6 @@
+.selectedHotel {
+  border: 2px black solid;
+  height: 200px;
+  width: 600px;
+  display: flex;
+}
