@@ -16,7 +16,8 @@ export default class Hotels extends Component {
           photos:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Tamatsukuri_onsen_yado02s3648.jpg/1024px-Tamatsukuri_onsen_yado02s3648.jpg",
           city: "Tokyo",
-          hotelName: "Nate's Ryokan"
+          hotelName: "Nate's Ryokan",
+          roomsLeft: 10
         },
         {
           minTotalPrice: 5,
@@ -26,7 +27,8 @@ export default class Hotels extends Component {
           photos:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ryokan_interior%2C_door_and_stairs.jpg/1024px-Ryokan_interior%2C_door_and_stairs.jpg",
           city: "Osaka",
-          hotelName: "Nathan's Ryokan"
+          hotelName: "Nathan's Ryokan",
+          roomsLeft: 1
         },
         {
           minTotalPrice: 50,
@@ -36,7 +38,8 @@ export default class Hotels extends Component {
           photos:
             "https://photos.smugmug.com/Osaka/Osaka-Categories/i-7XbMJwd/0/XL/Osaka_Ryokan-XL.jpg",
           city: "Fukuoka",
-          hotelName: "Nathaniel's Ryokan"
+          hotelName: "Nathaniel's Ryokan",
+          roomsLeft: 5
         }
       ],
       currentHotel: 0
@@ -85,6 +88,11 @@ export default class Hotels extends Component {
             hotel.reviewScore + (hotel.reviewScore === 1 ? " Star" : " Stars")
           }
           price={hotel.minTotalPrice + " " + hotel.currencyCode}
+          available={
+            hotel.roomsLeft +
+            " " +
+            (hotel.roomsLeft === 1 ? " Room Left" : " Rooms Left")
+          }
         />
       );
     });

@@ -13,7 +13,7 @@ export default class App extends React.Component {
         arriveDate: "",
         departDate: "",
         minPrice: 0,
-        maxPrice: 0,
+        maxPrice: 9999,
         budget: 0
       },
       datepicker: {
@@ -25,9 +25,19 @@ export default class App extends React.Component {
 
   handleSeachClicked = e => {
     e.preventDefault();
+<<<<<<< HEAD
     //add input validation
     if (this.state.selections) console.log("started search");
     this.setState({ filtered: true });
+=======
+    if (this.formValidation()) {
+      console.log("Params are OK.Started search.");
+      this.setState({ filtered: true });
+    } else {
+      alert("Check Your Input");
+    }
+
+>>>>>>> 96ff5920007a282f1304516d907902f423fb9772
   };
 
   handleBackOrCancel = e => {
@@ -48,6 +58,7 @@ export default class App extends React.Component {
     }
   }
 
+<<<<<<< HEAD
   setCity = e => {
     this.setState({
       selections: { ...this.state.selections, cityName: e.target.value }
@@ -78,6 +89,35 @@ export default class App extends React.Component {
       selections: { ...this.state.selections, budget: e.target.value }
     });
   };
+=======
+  setCity = (e) => {
+    this.setState({ selections: {...this.state.selections, cityName: e.target.value}});
+  }
+  setArrival = (e) => {
+    const arrivalDateUnix = new Date(e.target.value).getTime();
+    const oneDay = 24*60*60*1000;
+    const nextDayUnix = arrivalDateUnix + oneDay;
+    const nextDay = new Date(nextDayUnix)
+    const nextDayString = `${nextDay.getUTCFullYear()}-${String(nextDay.getUTCMonth() + 1).padStart(2, "0")}-${String(nextDay.getUTCDate()).padStart(2, "0")}`
+    this.setState({ selections: {...this.state.selections, arriveDate: e.target.value, departDate: nextDayString}});
+  }
+  setDeparture = (e) => {
+    this.setState({ selections: {...this.state.selections, departDate: e.target.value}});
+  }
+  setHotelMin = (e) => {
+    this.setState({ selections: {...this.state.selections, minPrice: e.target.value}});
+  }
+  setHotelMax = (e) => {
+    this.setState({ selections: {...this.state.selections, maxPrice: e.target.value}});
+  }
+  setBudget = (e) => {
+    this.setState({ selections: {...this.state.selections, budget: e.target.value}});
+  }
+  
+  formValidation= (city, startDate, endDate) => {
+    return city !== "" && startDate !== "" && endDate !== "" && endDate > startDate;
+  }
+>>>>>>> 96ff5920007a282f1304516d907902f423fb9772
 
   render() {
     return (
@@ -114,6 +154,8 @@ export default class App extends React.Component {
                   this.handleDateField(e);
                 }}
                 onChange={this.setDeparture}
+                // min={th}
+                value={this.state.selections.departDate}
                 className="date-pick"
                 placeholder="Departure Date"
               ></input>
@@ -170,19 +212,24 @@ export default class App extends React.Component {
           </form>
         ) : (
           <div>
-            <form className="user-input" value="">
-              <button
-                className="goHome"
-                onClick={e => {
-                  this.handleBackOrCancel(e);
-                }}
-              >
-                {" "}
-                GO BACK TO SEARCH{" "}
-              </button>
-            </form>
-            <div>
-              <Events />
+          <form className="user-input" value="">
+            <button
+              className="goHome"
+              onClick={e => {
+                this.handleBackOrCancel(e);
+              }}
+            >
+              {" "}
+              GO BACK TO SEARCH{" "}
+            </button>
+          </form>
+          <div>
+              <Events
+                cityName={this.state.selections.cityName}
+                arrivalDate={this.state.selections.arrivalDate}
+                departureDate={this.state.selections.departureDate}
+                budget={this.state.selections.budget}
+              />
               <Hotels
                 cityName={this.state.selections.cityName}
                 arrivalDate={this.state.selections.arrivalDate}
@@ -197,3 +244,4 @@ export default class App extends React.Component {
     );
   }
 }
+

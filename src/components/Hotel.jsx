@@ -24,6 +24,7 @@ export default class Hotel extends Component {
         <div>Address: {this.props.address}</div>
         <div>Score: {this.props.review}</div>
         <div>Price: {this.props.price}</div>
+        <div>Rooms Left: {this.props.available}</div>
       </div>
     );
   }
