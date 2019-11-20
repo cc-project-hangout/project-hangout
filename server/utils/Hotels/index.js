@@ -2,7 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 
 // const fetchLocations = () => {
-  //TODO: modify information
+//TODO: modify information
 //   const http = require("https");
 //   const options = {
 // 	"method": "GET",
@@ -31,12 +31,12 @@ const axios = require("axios");
 
 // }
 
-const loadHotels = (cityInfo) => {
+const loadHotels = cityInfo => {
   //TODO: modify Information
   console.log(cityInfo);
   return cityInfo;
-}
+};
 
 module.exports = {
   loadHotels
-}
+};
