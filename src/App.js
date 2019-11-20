@@ -177,22 +177,17 @@ export default class App extends React.Component {
               GO BACK TO SEARCH{" "}
             </button>
           </form>
-<<<<<<< HEAD
-          <div className="components">
-              <Events cityName={this.state.selections.cityName} arriveDate={this.state.selections.arriveDate} />
-=======
           <div>
               <Events
                 cityName={this.state.selections.cityName}
-                arrivalDate={this.state.selections.arrivalDate}
-                departureDate={this.state.selections.departureDate}
+                arriveDate={this.state.selections.arriveDate}
+                departDate={this.state.selections.departDate}
                 budget={this.state.selections.budget}
               />
->>>>>>> 4b2ce0e2ee33c9688924c8723d329005475ace6c
               <Hotels
                 cityName={this.state.selections.cityName}
-                arriveDate={this.state.selections.arrivalDate}
-                departureDate={this.state.selections.departureDate}
+                arrivalDate={this.state.selections.arriveDate}
+                departureDate={this.state.selections.departDate}
                 minPrice={this.state.selections.minPrice}
                 maxPrice={this.state.selections.maxPrice}
               />
