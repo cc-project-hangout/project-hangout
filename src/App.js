@@ -7,13 +7,18 @@ export default class App extends React.Component {
     super();
     this.state = {
       filtered: false,
+      allCityOptions: [],
       selections: {
         cityName: "",
-        arrivalDate: "",
-        departureDate: "",
+        arriveDate: "",
+        departDate: "",
         minPrice: 0,
         maxPrice: 0,
         budget: 0
+      },
+      datepicker: {
+        arriveDate: "text",
+        departDate: "text"
       }
     };
   }
@@ -21,8 +26,7 @@ export default class App extends React.Component {
   handleSeachClicked = e => {
     e.preventDefault();
     //add input validation
-
-    console.log("started search");
+    if (this.state.selections) console.log("started search");
     this.setState({ filtered: true });
   };
 
@@ -32,15 +36,88 @@ export default class App extends React.Component {
     this.setState({ filtered: false });
   };
 
+  handleDateField(e) {
+    let newType = "text";
+    if (e.target.type === "text") {
+      newType = "date";
+    }
+    if (e.target.id === "arriveDate") {
+      this.setState({ datepicker: { arriveDate: newType } });
+    } else if (e.target.id === "departDate") {
+      this.setState({ datepicker: { departDate: newType } });
+    }
+  }
+
+  setCity = e => {
+    this.setState({
+      selections: { ...this.state.selections, cityName: e.target.value }
+    });
+  };
+  setArrival = e => {
+    this.setState({
+      selections: { ...this.state.selections, arriveDate: e.target.value }
+    });
+  };
+  setDeparture = e => {
+    this.setState({
+      selections: { ...this.state.selections, departDate: e.target.value }
+    });
+  };
+  setHotelMin = e => {
+    this.setState({
+      selections: { ...this.state.selections, minPrice: e.target.value }
+    });
+  };
+  setHotelMax = e => {
+    this.setState({
+      selections: { ...this.state.selections, maxPrice: e.target.value }
+    });
+  };
+  setBudget = e => {
+    this.setState({
+      selections: { ...this.state.selections, budget: e.target.value }
+    });
+  };
+
   render() {
     return (
       <div className="App">
         {!this.state.filtered ? (
           <form className="user-input" value="">
-            <input type="text" placeholder="City"></input>
-            <label for="startDate">arrival Date</label>
-            <input id="startDate" type="date"></input>
-            <input type="date" placeholder="Departure Date"></input>
+            <input
+              id="cityName"
+              type="text"
+              placeholder="City"
+              onChange={this.setCity}
+            ></input>
+            <div className="two-column-div">
+              <input
+                id="arriveDate"
+                type={this.state.datepicker.arriveDate}
+                onFocus={e => {
+                  this.handleDateField(e);
+                }}
+                onBlur={e => {
+                  this.handleDateField(e);
+                }}
+                onChange={this.setArrival}
+                className="date-pick"
+                placeholder="Arrival Date"
+              ></input>
+              <input
+                id="departDate"
+                type={this.state.datepicker.departDate}
+                onFocus={e => {
+                  this.handleDateField(e);
+                }}
+                onBlur={e => {
+                  this.handleDateField(e);
+                }}
+                onChange={this.setDeparture}
+                className="date-pick"
+                placeholder="Departure Date"
+              ></input>
+            </div>
             <div className="two-column-div">
               <input
                 type="number"
@@ -48,7 +125,8 @@ export default class App extends React.Component {
                 pattern="[0-9]*"
                 min="0"
                 max="9999"
-                placeholder="Hotel Min Price"
+                placeholder="Hotel Min Price $"
+                onChange={this.setHotelMin}
               ></input>
               <input
                 type="number"
@@ -57,6 +135,7 @@ export default class App extends React.Component {
                 min="0"
                 max="9999"
                 placeholder="Hotel Max Price"
+                onChange={this.setHotelMax}
               ></input>
             </div>
             <input
@@ -64,7 +143,8 @@ export default class App extends React.Component {
               pattern="[0-9]*"
               min="0"
               max="9999"
-              placeholder="Play Budget"
+              placeholder="Play Budget $"
+              onChange={this.setBudget}
             ></input>
 
             <div className="two-column-div">
