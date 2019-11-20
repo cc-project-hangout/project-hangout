@@ -74,7 +74,7 @@ export default class Events extends Component {
   };
 
   render() {
-    const events = this.state.events.map((event, i) => {
+    const events = this.state.events.map(event => {
       return (
         <Event
           title={event.title}
@@ -83,7 +83,7 @@ export default class Events extends Component {
           venue={event.venue}
           description={event.description}
           startTime={event.startTime}
-          key={event.title + "_" + i}
+          key={event.title} // TODO: Change key ids
         />
       );
     });
