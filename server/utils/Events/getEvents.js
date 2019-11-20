@@ -6,33 +6,42 @@ const getEvents = (city, date) => {
     "GET",
     "https://community-eventful.p.rapidapi.com/events/search"
   );
-
   req.query({
-    // keywords: keywords,
     location: city,
-    // category: category,
     date: date,
     app_key: "Kt6kcJL4XfPs4wp5"
   });
-
   req.headers({
     "x-rapidapi-host": "community-eventful.p.rapidapi.com",
     "x-rapidapi-key": "9c43912371msh14d997739e2be0fp16cc17jsn6def561079f0"
   });
 
+  let arrayOfInfoWeNeed = [];
+
   req.end(function(res) {
     if (res.error) throw new Error(res.error);
-
-    //do it map
-    const result = convert.xml2js(res.body, { compact: true, spaces: 4 });
-    console.log(`title`, result.search.events.event[0].title._text);
-    console.log(`start time`, result.search.events.event[0].start_time._text);
-    console.log(`venue name`, result.search.events.event[0].venue_name._text);
-    console.log(`venue url`, result.search.events.event[0].venue_url._text);
-    console.log(`description`, result.search.events.event[0].description._text);
-    console.log(`image url`, result.search.events.event[0].image.url._text);
+    const arrayOfEventObj = convert.xml2js(res.body, {
+      compact: true,
+      spaces: 4
+    }).search.events.event;
+    arrayOfEventObj.forEach(eventfulObj => {
+      const sortedObj = {
+        title: eventfulObj["title"]["_text"],
+        image: eventfulObj["image"],
+        venue: eventfulObj["venue_name"]["_text"],
+        url: eventfulObj["venue_url"]["_text"],
+        description: eventfulObj["description"]["_text"],
+        startTime: eventfulObj["start_time"]["_text"]
+      };
+      arrayOfInfoWeNeed.push(sortedObj);
+    });
   });
-};
 
+  return arrayOfInfoWeNeed;
+};
 //TEST
-getEvents("Tokyo", "2019112000");
+// getEvents("Tokyo", "2020061000-2020061100");
+
+module.exports = {
+  getEvents
+};
