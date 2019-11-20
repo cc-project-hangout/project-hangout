@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-
+import Events from './components/Events'
 export default class App extends React.Component {
   constructor() {
     super();
@@ -55,7 +55,7 @@ export default class App extends React.Component {
           <form className="user-input" value="">
             <button className="goHome" onClick={(e) => {this.handleBackOrCancel(e)}}> GO BACK TO SEARCH </button>
             <p>
-              THIS IS A PLACEHOLDER FOR ALL THE INFO
+              <Events />
             </p>
 
           </form>
