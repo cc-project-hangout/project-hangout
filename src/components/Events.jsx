@@ -86,7 +86,7 @@ export default class Events extends Component {
                 {events[this.state.eventIndex]}
             </div>
             <div className="rightArrow" onClick={this.checkNextEvent}>
-               RIGHT
+               <img src="../assets/arrow.png" />
             </div>
             </div>
             

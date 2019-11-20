@@ -6,13 +6,14 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #282c34;
 }
 .App {
-  display: flex; 
+  display: flex;
+  width: 70%;
   flex-flow: row;
   justify-content: center;
   align-content: center;
-  background-color: #282c34;
 }
 
 /* .App-logo {
@@ -32,26 +33,34 @@ body,
 }
 
 .user-input > input {
+  min-width: 500px;
   margin: 10px 0;
   font-size: large;
   flex: 0 0 5vh;
-  width: 50%;
+  width: 60%;
 }
 
 .two-column-div {
-  width: 50%;
-  flex: 0 0 6vh;
+  min-width: 500px;
+  width: 60%;
+  flex: 0 0 5vh;
+  margin: 10px 0;
   display: flex;
   flex-flow: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+  padding: 0;
 }
 
+.date-pick,
 .form-button,
 .hotel-price {
+  padding: 0;
+  margin: 0;
   font-size: large;
-  flex: 0 0 45%;
+  flex: 0 0 40%;
+  min-width: 220px;
   height: 5vh;
 }
 
