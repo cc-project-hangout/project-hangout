@@ -1,5 +1,6 @@
 #eventContainer {
     border: 2px black solid;
-    height:400px;
-    width:400px;
+    height:60%;
+    width:50%;
+    display:flex;
 }

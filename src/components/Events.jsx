@@ -18,7 +18,7 @@ export default class Events extends Component {
                 startTime: '8:00'
                 },
                 {
-                    title: 'Sickest event ever',
+                    title: 'WOWSickest event ever',
                     image: 'https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg', 
                     venue: 'Test Venue', 
                     url: 'https://google.com', 
@@ -27,13 +27,13 @@ export default class Events extends Component {
                     }
             
             ],
-
+            eventIndex: 0
 
         }
     }
 
     componentDidMount() {
-        //'2012042500-2012042700' api format
+        //'2012042500-201204200' api format
         // our app format YYYY-MM-DD
 
         // const updatedDate = this.props.arrivalDate.split('-').join('') + '00';
@@ -50,15 +50,44 @@ export default class Events extends Component {
         //     console.log(error);
         //   });
     }
-    render() {    
 
+    checkPreviousEvent = () => {
+
+        if(this.state.eventIndex!== 0) {
+            let newPrevIndex = this.state.eventIndex;
+            newPrevIndex--
+            this.setState({eventIndex: newPrevIndex});
+        }
+        console.log('ok');
+    }
+
+    checkNextEvent = () => {
+        let newNextIndex = this.state.eventIndex;
+        newNextIndex++
+        if(this.state.eventIndex!== this.state.events.length-1) {
+            this.setState({eventIndex: newNextIndex});
+        }
+        console.log('ok');
+            
+    }
+
+
+    render() {    
         const events = this.state.events.map(event => {
            return  <Event title={event.title} url={event.url} image={event.image} venue={event.venue} description={event.description} startTime={event.startTime} />
         });
 
         return (
             <div id ="eventContainer">
-                {events}
+            <div className="leftArrow" onClick={this.checkPreviousEvent}>
+                LEFT
+            </div>
+            <div className="events">
+                {events[this.state.eventIndex]}
+            </div>
+            <div className="rightArrow" onClick={this.checkNextEvent}>
+               <img src="../assets/arrow.png" />
+            </div>
             </div>
             
         )
