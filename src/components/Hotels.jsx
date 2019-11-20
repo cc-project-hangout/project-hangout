@@ -14,7 +14,7 @@ export default class Hotels extends Component {
 
   componentDidMount() {
     axios
-      .post("/api/hotels", {
+      .post("http://localhost:5000/api/hotels", {
         city: this.props.cityName,
         arrivalDate: this.props.arrivalDate,
         departureDate: this.props.departureDate,
@@ -51,6 +51,7 @@ export default class Hotels extends Component {
           image={hotel.photos}
           name={hotel.hotelName}
           city={hotel.city}
+          zip={hotel.zip}
           address={hotel.address}
           review={
             hotel.reviewScore + (hotel.reviewScore === 1 ? " Star" : " Stars")

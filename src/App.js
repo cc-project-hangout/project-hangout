@@ -45,7 +45,7 @@ export default class App extends React.Component {
         minPrice: 0,
         maxPrice: 9999,
         budget: 0
-      },
+      }
     });
   };
 
@@ -70,7 +70,6 @@ export default class App extends React.Component {
     const arrivalDateUnix = new Date(e.target.value).getTime();
     const oneDay = 24 * 60 * 60 * 1000;
     const nextDayUnix = arrivalDateUnix + oneDay;
-<<<<<<< HEAD
     const nextDay = new Date(nextDayUnix);
     const nextDayString = `${nextDay.getUTCFullYear()}-${String(
       nextDay.getUTCMonth() + 1
@@ -104,36 +103,17 @@ export default class App extends React.Component {
     });
   };
 
-  formValidation = (city, startDate, endDate) => {
-    return (
-      city !== "" && startDate !== "" && endDate !== "" && endDate > startDate
-    );
-  };
-=======
-    const nextDay = new Date(nextDayUnix)
-    const nextDayString = `${nextDay.getUTCFullYear()}-${String(nextDay.getUTCMonth() + 1).padStart(2, "0")}-${String(nextDay.getUTCDate()).padStart(2, "0")}`
-    this.setState({ selections: {...this.state.selections, arriveDate: e.target.value, departDate: nextDayString}});
-  }
-  setDeparture = (e) => {
-    this.setState({ selections: {...this.state.selections, departDate: e.target.value}});
-  }
-  setHotelMin = (e) => {
-    this.setState({ selections: {...this.state.selections, minPrice: e.target.value}});
-  }
-  setHotelMax = (e) => {
-    this.setState({ selections: {...this.state.selections, maxPrice: e.target.value}});
-  }
-  setBudget = (e) => {
-    this.setState({ selections: {...this.state.selections, budget: e.target.value}});
-  }
-  
-  formValidation= () => {
+  formValidation = () => {
     const city = this.state.selections.cityName;
     const startDateUnix = new Date(this.state.selections.arriveDate);
     const endDateUnix = new Date(this.state.selections.departDate);
-    return city !== "" && this.state.selections.arriveDate !== "" && this.state.selections.departDate !== "" && endDateUnix > startDateUnix;
-  }
->>>>>>> 4b2ce0e2ee33c9688924c8723d329005475ace6c
+    return (
+      city !== "" &&
+      this.state.selections.arriveDate !== "" &&
+      this.state.selections.departDate !== "" &&
+      endDateUnix > startDateUnix
+    );
+  };
 
   render() {
     return (
