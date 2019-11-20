@@ -23,6 +23,7 @@ app.post("/api/hotels", async (req, res) => {
 
 app.post("/api/events", async (req, res) => {
   try {
+    console.log('h')
     const events = await getEvents(req.body.city, req.body.date);
     res.json(events);
   } catch (e) {

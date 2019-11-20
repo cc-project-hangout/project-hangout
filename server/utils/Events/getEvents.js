@@ -1,6 +1,7 @@
 // const unirest = require("unirest");
 const axios = require("axios");
 var convert = require("xml-js");
+
 require("dotenv").config();
 
 const getEvents = async (city, date) => {
@@ -32,7 +33,8 @@ const getEvents = async (city, date) => {
     if (sortedObj["image"] !== undefined) {
       sortedObj["image"] = sortedObj["image"]["_text"];
     } else {
-      sortedObj["image"] = "./src/assets/default.png";
+      sortedObj["image"] = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
+      ;
     }
     arrayOfInfoWeNeed.push(sortedObj);
   });
