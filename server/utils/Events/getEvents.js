@@ -10,14 +10,14 @@ const getEvents = async (city, date) => {
     {
       headers: {
         "x-rapidapi-host": "community-eventful.p.rapidapi.com",
-        "x-rapidapi-key": process.env.X_RAPIDAPI_KEY
-      }
+        "x-rapidapi-key": process.env.X_RAPIDAPI_KEY,
+      },
     }
   );
 
   const arrayOfEventObj = convert.xml2js(events.data, {
     compact: true,
-    spaces: 4
+    spaces: 4,
   }).search.events.event;
 
   let arrayOfInfoWeNeed = [];
@@ -28,13 +28,12 @@ const getEvents = async (city, date) => {
       venue: eventfulObj["venue_name"]["_text"],
       url: eventfulObj["venue_url"]["_text"],
       description: eventfulObj["description"]["_text"],
-      startTime: eventfulObj["start_time"]["_text"]
+      startTime: eventfulObj["start_time"]["_text"],
     };
     if (sortedObj["image"] !== undefined) {
       sortedObj["image"] = sortedObj["image"]["_text"];
     } else {
-      sortedObj["image"] = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
-      ;
+      sortedObj["image"] = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png";
     }
     arrayOfInfoWeNeed.push(sortedObj);
   });
@@ -42,5 +41,5 @@ const getEvents = async (city, date) => {
 };
 
 module.exports = {
-  getEvents
+  getEvents,
 };

@@ -2,132 +2,133 @@ html,
 body,
 #root,
 .App {
-  display: flex;
-  width: 100%;
-  flex: 1 1 100%;
-  justify-content: center;
-  align-content: center;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #282c34;
+    display: flex;
+    width: 100%;
+    flex: 1 1 100%;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #282c34;
 }
 .App {
-  flex: 1 1 60%;
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  color: white;
+    flex: 1 1 60%;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    color: white;
 }
 
 #blinder {
-  position: fixed;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #2a5dc2;
-  opacity: 90%;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2a5dc2;
+    opacity: 90%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#blinder h1,h2 {
-  flex: 0 1 5%;
-  text-align: center;
-  width: 60%;
-  color: white;
+#blinder h1,
+h2 {
+    flex: 0 1 5%;
+    text-align: center;
+    width: 60%;
+    color: white;
 }
 
 .app-name {
-  flex: 0 1 70%;
-  height: 250px;
-  text-align: center;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+    flex: 0 1 70%;
+    height: 250px;
+    text-align: center;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .app-name img {
-  padding-top: 50px;
-  flex: 0 0 300px;
-  height: 300px;
-  margin: 0;
+    padding-top: 50px;
+    flex: 0 0 300px;
+    height: 300px;
+    margin: 0;
 }
 
 .user-input {
-  height:90%;
-  flex: 0 1 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  text-align-last: center;
-  color: white;
+    height: 90%;
+    flex: 0 1 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    text-align-last: center;
+    color: white;
 }
 
 .user-input > input {
-  min-width: 500px;
-  margin: 10px 0;
-  font-size: large;
-  flex: 0 0 5vh;
-  width: 60%;
+    min-width: 500px;
+    margin: 10px 0;
+    font-size: large;
+    flex: 0 0 5vh;
+    width: 60%;
 }
 
 .two-column-div {
-  min-width: 500px;
-  width: 60%;
-  flex: 0 0 5vh;
-  margin: 10px 0;
-  display: flex;
-  flex-flow: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0;
+    min-width: 500px;
+    width: 60%;
+    flex: 0 0 5vh;
+    margin: 10px 0;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
 }
 
 .date-pick,
 .form-button,
 .hotel-price {
-  padding: 0;
-  margin: 0;
-  font-size: large;
-  flex: 0 0 40%;
-  min-width: 220px;
-  height: 5vh;
+    padding: 0;
+    margin: 0;
+    font-size: large;
+    flex: 0 0 40%;
+    min-width: 220px;
+    height: 5vh;
 }
 
 .App-link {
-  color: #09d3ac;
+    color: #09d3ac;
 }
 
 #componentContainer {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width:100%;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .goHomeForm {
-  height:5%;
+    height: 5%;
 }
 
 .components {
-  height:90%;
-  display: flex;
-  flex-direction: column;
-  width:100%;
-  justify-content: center;
-  align-content:center;
-  align-items: center;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
