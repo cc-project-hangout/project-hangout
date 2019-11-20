@@ -23,12 +23,17 @@ const getEvents = async (city, date) => {
   arrayOfEventObj.forEach(eventfulObj => {
     const sortedObj = {
       title: eventfulObj["title"]["_text"],
-      image: eventfulObj["image"],
+      image: eventfulObj["image"]["url"],
       venue: eventfulObj["venue_name"]["_text"],
       url: eventfulObj["venue_url"]["_text"],
       description: eventfulObj["description"]["_text"],
       startTime: eventfulObj["start_time"]["_text"]
     };
+    if (sortedObj["image"] !== undefined) {
+      sortedObj["image"] = sortedObj["image"]["_text"];
+    } else {
+      sortedObj["image"] = "./src/assets/default.png";
+    }
     arrayOfInfoWeNeed.push(sortedObj);
   });
   return arrayOfInfoWeNeed;
