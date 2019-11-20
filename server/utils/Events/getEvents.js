@@ -33,8 +33,12 @@ const getEvents = async (city, date) => {
     if (sortedObj["image"] !== undefined) {
       sortedObj["image"] = sortedObj["image"]["_text"];
     } else {
+<<<<<<< HEAD
       sortedObj["image"] = "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
       ;
+=======
+      sortedObj["image"] = "./src/assets/default.png";
+>>>>>>> 4b2ce0e2ee33c9688924c8723d329005475ace6c
     }
     arrayOfInfoWeNeed.push(sortedObj);
   });
