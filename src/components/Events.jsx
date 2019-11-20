@@ -36,19 +36,23 @@ export default class Events extends Component {
         //'2012042500-201204200' api format
         // our app format YYYY-MM-DD
 
-        // const updatedDate = this.props.arrivalDate.split('-').join('') + '00';
-
-        // axios.post('/api/events', {
-        //     city: this.props.cityName,
-        //     date: updatedDate
-        //   })
-        //   .then(function (response) {
-        //       //if we get multiple objects, can just put them in an array
-        //     this.setState {events: response}
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error);
-        //   });
+        const updatedDate = this.props.arriveDate.split('-').join('') + '00';
+        const nextDate = "2019062100"
+        const totalDates = updatedDate + '-' + nextDate;
+        console.log(totalDates);
+        axios.post('/api/events', {
+            city: this.props.cityName,
+            date: updatedDate
+          })
+          .then((response) => { 
+            //if we get multiple objects, can just put them in an array
+            console.log(response.data);
+            this.setState({events: response.data})
+            //console.log(response.data)
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
 
     checkPreviousEvent = () => {
@@ -58,6 +62,7 @@ export default class Events extends Component {
             newPrevIndex--
             this.setState({eventIndex: newPrevIndex});
         }
+        
         console.log('ok');
     }
 
@@ -74,7 +79,7 @@ export default class Events extends Component {
 
     render() {    
         const events = this.state.events.map(event => {
-           return  <Event title={event.title} url={event.url} image={event.image} venue={event.venue} description={event.description} startTime={event.startTime} />
+           return  <Event title={event.title} url={event.url} image ={event.image} venue={event.venue} description={event.description} startTime={event.startTime} />
         });
 
         return (

@@ -9,8 +9,8 @@ export default class App extends React.Component {
       filtered: false,
       allCityOptions: [],
       selections: {
-        cityName: "",
-        arriveDate: "",
+        cityName: "Tokyo",
+        arriveDate: "2019-06-20",
         departDate: "",
         minPrice: 0,
         maxPrice: 0,
@@ -153,10 +153,10 @@ export default class App extends React.Component {
             </button>
           </form>
           <div className="components">
-              <Events />
+              <Events cityName={this.state.selections.cityName} arriveDate={this.state.selections.arriveDate} />
               <Hotels
                 cityName={this.state.selections.cityName}
-                arrivalDate={this.state.selections.arrivalDate}
+                arriveDate={this.state.selections.arrivalDate}
                 departureDate={this.state.selections.departureDate}
                 minPrice={this.state.selections.minPrice}
                 maxPrice={this.state.selections.maxPrice}

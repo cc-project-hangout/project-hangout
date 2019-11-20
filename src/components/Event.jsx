@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import './styles/Event.css'
 export default class Event extends Component {
 
     constructor(props) {
@@ -8,13 +8,13 @@ export default class Event extends Component {
     render() {
 
         return (
-            <div>
-            <div>{this.props.title}</div>
-            <div>{this.props.url}</div>
-            <div>{this.props.image}</div>
-            <div>{this.props.venue}</div>
-            <div>{this.props.description}</div>
-            <div>{this.props.startTime}</div>
+            <div id="eventContainer">
+            <div id="title">{this.props.title}</div>
+            <div id="url">{this.props.url}</div>
+            <img id="image" src={this.props.image}></img>
+            <div id="venue">{this.props.venue}</div>
+            <div id="description">{this.props.description}</div>
+            <div id="startTime">{this.props.startTime}</div>
             </div>
         )
 
