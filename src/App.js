@@ -9,17 +9,17 @@ export default class App extends React.Component {
       filtered: false,
       allCityOptions: [],
       selections: {
-        cityName: "",
-        arriveDate: "",
+        cityName: "Tokyo",
+        arriveDate: "2019-06-20",
         departDate: "",
         minPrice: 0,
         maxPrice: 9999,
-        budget: 0
+        budget: 0,
       },
       datepicker: {
         arriveDate: "text",
-        departDate: "text"
-      }
+        departDate: "text",
+      },
     };
   }
 
@@ -44,8 +44,8 @@ export default class App extends React.Component {
         departDate: "",
         minPrice: 0,
         maxPrice: 9999,
-        budget: 0
-      }
+        budget: 0,
+      },
     });
   };
 
@@ -63,7 +63,7 @@ export default class App extends React.Component {
 
   setCity = e => {
     this.setState({
-      selections: { ...this.state.selections, cityName: e.target.value }
+      selections: { ...this.state.selections, cityName: e.target.value },
     });
   };
   setArrival = e => {
@@ -71,35 +71,35 @@ export default class App extends React.Component {
     const oneDay = 24 * 60 * 60 * 1000;
     const nextDayUnix = arrivalDateUnix + oneDay;
     const nextDay = new Date(nextDayUnix);
-    const nextDayString = `${nextDay.getUTCFullYear()}-${String(
-      nextDay.getUTCMonth() + 1
-    ).padStart(2, "0")}-${String(nextDay.getUTCDate()).padStart(2, "0")}`;
+    const nextDayString = `${nextDay.getUTCFullYear()}-${String(nextDay.getUTCMonth() + 1).padStart(2, "0")}-${String(
+      nextDay.getUTCDate()
+    ).padStart(2, "0")}`;
     this.setState({
       selections: {
         ...this.state.selections,
         arriveDate: e.target.value,
-        departDate: nextDayString
-      }
+        departDate: nextDayString,
+      },
     });
   };
   setDeparture = e => {
     this.setState({
-      selections: { ...this.state.selections, departDate: e.target.value }
+      selections: { ...this.state.selections, departDate: e.target.value },
     });
   };
   setHotelMin = e => {
     this.setState({
-      selections: { ...this.state.selections, minPrice: e.target.value }
+      selections: { ...this.state.selections, minPrice: e.target.value },
     });
   };
   setHotelMax = e => {
     this.setState({
-      selections: { ...this.state.selections, maxPrice: e.target.value }
+      selections: { ...this.state.selections, maxPrice: e.target.value },
     });
   };
   setBudget = e => {
     this.setState({
-      selections: { ...this.state.selections, budget: e.target.value }
+      selections: { ...this.state.selections, budget: e.target.value },
     });
   };
 
@@ -120,12 +120,7 @@ export default class App extends React.Component {
       <div className="App">
         {!this.state.filtered ? (
           <form className="user-input" value="">
-            <input
-              id="cityName"
-              type="text"
-              placeholder="City"
-              onChange={this.setCity}
-            ></input>
+            <input id="cityName" type="text" placeholder="City" onChange={this.setCity}></input>
             <div className="two-column-div">
               <input
                 id="arriveDate"
@@ -207,8 +202,8 @@ export default class App extends React.Component {
             </div>
           </form>
         ) : (
-          <div>
-            <form className="user-input" value="">
+          <div id="componentContainer">
+            <form className="goHomeForm" value="">
               <button
                 className="goHome"
                 onClick={e => {
@@ -222,14 +217,14 @@ export default class App extends React.Component {
             <div>
               <Events
                 cityName={this.state.selections.cityName}
-                arrivalDate={this.state.selections.arrivalDate}
-                departureDate={this.state.selections.departureDate}
+                arriveDate={this.state.selections.arriveDate}
+                departDate={this.state.selections.departDate}
                 budget={this.state.selections.budget}
               />
               <Hotels
                 cityName={this.state.selections.cityName}
-                arrivalDate={this.state.selections.arrivalDate}
-                departureDate={this.state.selections.departureDate}
+                arrivalDate={this.state.selections.arriveDate}
+                departureDate={this.state.selections.departDate}
                 minPrice={this.state.selections.minPrice}
                 maxPrice={this.state.selections.maxPrice}
               />

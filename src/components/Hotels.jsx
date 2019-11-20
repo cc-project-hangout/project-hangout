@@ -8,20 +8,28 @@ export default class Hotels extends Component {
     super(props);
     this.state = {
       hotels: [],
-      currentHotel: 0
+      currentHotel: 0,
     };
   }
 
   componentDidMount() {
     axios
-      .post("http://localhost:5000/api/hotels", {
+      .post("api/hotels", {
         city: this.props.cityName,
         arrivalDate: this.props.arrivalDate,
         departureDate: this.props.departureDate,
         minPrice: this.props.minPrice,
-        maxPrice: this.props.maxPrice
+        maxPrice: this.props.maxPrice,
       })
-      .then(data => console.log(data));
+      .then(list => {
+        console.log(list);
+        this.setState({ hotels: list.data ? list.data.filter(x => x !== null) : [] }, function() {
+          console.log(this.state);
+        });
+      })
+      .catch(err => {
+        console.log("Error: ", err);
+      });
   }
 
   getNextHotel = () => {
@@ -48,20 +56,15 @@ export default class Hotels extends Component {
     const hotels = this.state.hotels.map(hotel => {
       return (
         <Hotel
-          image={hotel.photos}
+          key={this.state.currentHotel}
+          image={hotel.photos.replace("square60", "square300")}
           name={hotel.hotelName}
           city={hotel.city}
           zip={hotel.zip}
           address={hotel.address}
-          review={
-            hotel.reviewScore + (hotel.reviewScore === 1 ? " Star" : " Stars")
-          }
+          review={hotel.reviewScore + (hotel.reviewScore === 1 ? " Star" : " Stars")}
           price={hotel.minTotalPrice + " " + hotel.currencyCode}
-          available={
-            hotel.roomsLeft +
-            " " +
-            (hotel.roomsLeft === 1 ? " Room Left" : " Rooms Left")
-          }
+          available={hotel.roomsLeft + " " + (hotel.roomsLeft === 1 ? " Room Left" : " Rooms Left")}
         />
       );
     });
