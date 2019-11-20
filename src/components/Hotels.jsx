@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import axios from "axios";
+import axios from "axios";
 import Hotel from "./Hotel";
 import "./styles/Hotels.css";
 
@@ -7,53 +7,21 @@ export default class Hotels extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hotels: [
-        {
-          minTotalPrice: 500,
-          currencyCode: "USD",
-          reviewScore: 5,
-          address: "123 Fake St",
-          photos:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Tamatsukuri_onsen_yado02s3648.jpg/1024px-Tamatsukuri_onsen_yado02s3648.jpg",
-          city: "Tokyo",
-          hotelName: "Nate's Ryokan",
-          roomsLeft: 10
-        },
-        {
-          minTotalPrice: 5,
-          currencyCode: "USD",
-          reviewScore: 1,
-          address: "124 Fake St",
-          photos:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ryokan_interior%2C_door_and_stairs.jpg/1024px-Ryokan_interior%2C_door_and_stairs.jpg",
-          city: "Osaka",
-          hotelName: "Nathan's Ryokan",
-          roomsLeft: 1
-        },
-        {
-          minTotalPrice: 50,
-          currencyCode: "USD",
-          reviewScore: 3,
-          address: "125 Fake St",
-          photos:
-            "https://photos.smugmug.com/Osaka/Osaka-Categories/i-7XbMJwd/0/XL/Osaka_Ryokan-XL.jpg",
-          city: "Fukuoka",
-          hotelName: "Nathaniel's Ryokan",
-          roomsLeft: 5
-        }
-      ],
+      hotels: [],
       currentHotel: 0
     };
   }
 
   componentDidMount() {
-    // axios.post("/api/hotels", {
-    //   city: this.props.cityName,
-    //   arrivalDate: this.props.arrivalDate,
-    //   departureDate: this.props.departureDate,
-    //   minPrice: this.props.minPrice,
-    //   maxPrice: this.props.maxPrice
-    // });
+    axios
+      .post("/api/hotels", {
+        city: this.props.cityName,
+        arrivalDate: this.props.arrivalDate,
+        departureDate: this.props.departureDate,
+        minPrice: this.props.minPrice,
+        maxPrice: this.props.maxPrice
+      })
+      .then(data => console.log(data));
   }
 
   getNextHotel = () => {
