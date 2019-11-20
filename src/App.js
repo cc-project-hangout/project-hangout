@@ -102,11 +102,11 @@ export default class App extends React.Component {
             <p>
               <Events />
               <Hotels
-                cityName="this.state.cityName"
-                arrivalDate="this.state.arrivalDate"
-                departureDate="this.state.departureDate"
-                minPrice="this.state.minPrice"
-                maxPrice="this.state.maxPrice"
+                cityName={this.state.selections.cityName}
+                arrivalDate={this.state.selections.arrivalDate}
+                departureDate={this.state.selections.departureDate}
+                minPrice={this.state.selections.minPrice}
+                maxPrice={this.state.selections.maxPrice}
               />
             </p>
           </form>
