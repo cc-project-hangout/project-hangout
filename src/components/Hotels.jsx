@@ -88,14 +88,18 @@ export default class Hotels extends Component {
     });
 
     return (
-      <div className="selectedHotel">
-        <span type="text">YOUR HOTEL</span>
-        <div className="prevHotel" onClick={this.getPrevHotel}>
-          Get Prev Hotel
-        </div>
-        {hotels[this.state.currentHotel]}
-        <div className="nextHotel" onClick={this.getNextHotel}>
-          Get New Hotel
+      <div className="hotels">
+        <h3>YOUR HOTEL</h3>
+        <div className="selectedHotel">
+          <div className="prevHotel" onClick={this.getPrevHotel}>
+            Get Prev Hotel
+          </div>
+          <span type="text" className="hotelInfo">
+            {hotels[this.state.currentHotel]}
+          </span>
+          <div className="nextHotel" onClick={this.getNextHotel}>
+            Get Next Hotel
+          </div>
         </div>
       </div>
     );

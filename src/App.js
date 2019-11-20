@@ -89,17 +89,19 @@ export default class App extends React.Component {
             </div>
           </form>
         ) : (
-          <form className="user-input" value="">
-            <button
-              className="goHome"
-              onClick={e => {
-                this.handleBackOrCancel(e);
-              }}
-            >
-              {" "}
-              GO BACK TO SEARCH{" "}
-            </button>
-            <p>
+          <div>
+            <form className="user-input" value="">
+              <button
+                className="goHome"
+                onClick={e => {
+                  this.handleBackOrCancel(e);
+                }}
+              >
+                {" "}
+                GO BACK TO SEARCH{" "}
+              </button>
+            </form>
+            <div>
               <Events />
               <Hotels
                 cityName={this.state.selections.cityName}
@@ -108,8 +110,8 @@ export default class App extends React.Component {
                 minPrice={this.state.selections.minPrice}
                 maxPrice={this.state.selections.maxPrice}
               />
-            </p>
-          </form>
+            </div>
+          </div>
         )}
       </div>
     );

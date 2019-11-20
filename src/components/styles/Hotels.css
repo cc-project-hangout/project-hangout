@@ -1,6 +1,15 @@
 .selectedHotel {
   border: 2px black solid;
-  height: 200px;
-  width: 600px;
   display: flex;
+  margin: auto;
+  max-width: 500px;
+}
+
+.hotelInfo {
+  text-align: center;
+}
+
+.hotels {
+  text-align: center;
+  color: white;
 }
