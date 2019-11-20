@@ -1,8 +1,8 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const { loadHotels } = require("./utils/Hotels/index")
 // const {getEvents} = require('./utils/Events/getEvents');
-// const {getHotels} = require('./utils/Hotels');
 
 // const morgan = require("morgan");
 // app.use(morgan("dev"));
@@ -13,9 +13,14 @@ app.use("/api", express.json(), express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../build/")));
 
 app.post("/api/hotels", async (req, res) => {
-  // const hotels = await getHotels();
-  // res.json(hotels);
-  res.sendStatus(200);
+  try {
+    const cityInfo = req.body;
+    const hotels = await loadHotels(cityInfo);
+    res.json(hotels);
+    res.sendStatus(200);
+  }catch(e) {
+    throw new Error('hotel error');
+  }
 });
 
 app.get("/api/events", async (req, res) => {

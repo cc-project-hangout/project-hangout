@@ -1,6 +1,7 @@
-import React from 'react';
-import './App.css';
-import Events from './components/Events'
+import React from "react";
+import "./App.css";
+import Events from "./components/Events";
+import Hotels from "./components/Hotels";
 export default class App extends React.Component {
   constructor() {
     super();
@@ -22,20 +23,20 @@ export default class App extends React.Component {
     };
   }
 
-  handleSeachClicked = (e) => {
+  handleSeachClicked = e => {
     e.preventDefault();
     //add input validation
     if (this.state.selections)
 
     console.log("started search");
-    this.setState({filtered: true})
-  }
+    this.setState({ filtered: true });
+  };
 
-  handleBackOrCancel = (e) => {
+  handleBackOrCancel = e => {
     e.preventDefault();
 
-    this.setState({filtered: false});
-  }
+    this.setState({ filtered: false });
+  };
 
   handleDateField(e) {
     let newType = "text";
@@ -72,7 +73,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        { !this.state.filtered ? (
+        {!this.state.filtered ? (
           <form className="user-input" value="">
             <input id="cityName" type="text" placeholder="City" onChange={this.setCity}></input>
             <div className="two-column-div">
@@ -118,17 +119,49 @@ export default class App extends React.Component {
             <input type="number" pattern="[0-9]*" min="0" max="9999" placeholder="Play Budget $" onChange={this.setBudget}></input>
 
             <div className="two-column-div">
-              <button className="form-button" onClick={(e) => {this.handleSeachClicked(e)}}> SEARCH </button>
-              <button className="form-button" onClick={(e) => {this.handleBackOrCancel(e)}}> CLEAR </button>
+              <button
+                className="form-button"
+                onClick={e => {
+                  this.handleSeachClicked(e);
+                }}
+              >
+                {" "}
+                SEARCH{" "}
+              </button>
+              <button
+                className="form-button"
+                onClick={e => {
+                  this.handleBackOrCancel(e);
+                }}
+              >
+                {" "}
+                CLEAR{" "}
+              </button>
             </div>
           </form>
         ) : (
           <form className="user-input" value="">
-            <button className="goHome" onClick={(e) => {this.handleBackOrCancel(e)}}> GO BACK TO SEARCH </button>
-            <Events />
+            <button
+              className="goHome"
+              onClick={e => {
+                this.handleBackOrCancel(e);
+              }}
+            >
+              {" "}
+              GO BACK TO SEARCH{" "}
+            </button>
+            <p>
+              <Events />
+              <Hotels
+                cityName={this.state.selections.cityName}
+                arrivalDate={this.state.selections.arrivalDate}
+                departureDate={this.state.selections.departureDate}
+                minPrice={this.state.selections.minPrice}
+                maxPrice={this.state.selections.maxPrice}
+              />
+            </p>
           </form>
-
-        ) }
+        )}
       </div>
     );
   }
