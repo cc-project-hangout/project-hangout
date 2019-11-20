@@ -6,6 +6,7 @@ export default class App extends React.Component {
     super();
     this.state = {
       filtered: false,
+      allCityOptions: [],
       selections: {
         cityName: "",
         arrivalDate: "",
