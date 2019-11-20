@@ -2,19 +2,19 @@ html,
 body,
 #root,
 .App {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #282c34;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #282c34;
 }
 .App {
-  display: flex;
-  width: 70%;
-  flex-flow: row;
-  justify-content: center;
-  align-content: center;
-  color: white;
+    display: flex;
+    width: 70%;
+    flex-flow: row;
+    justify-content: center;
+    align-content: center;
+    color: white;
 }
 
 /* .App-logo {
@@ -22,73 +22,73 @@ body,
 } */
 
 .user-input {
-  height:5%;
-  flex: 1 1 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  text-align-last: center;
-  color: white;
+    height: 5%;
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    text-align-last: center;
+    color: white;
 }
 
 .user-input > input {
-  min-width: 500px;
-  margin: 10px 0;
-  font-size: large;
-  flex: 0 0 5vh;
-  width: 60%;
+    min-width: 500px;
+    margin: 10px 0;
+    font-size: large;
+    flex: 0 0 5vh;
+    width: 60%;
 }
 
 .two-column-div {
-  min-width: 500px;
-  width: 60%;
-  flex: 0 0 5vh;
-  margin: 10px 0;
-  display: flex;
-  flex-flow: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0;
+    min-width: 500px;
+    width: 60%;
+    flex: 0 0 5vh;
+    margin: 10px 0;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
 }
 
 .date-pick,
 .form-button,
 .hotel-price {
-  padding: 0;
-  margin: 0;
-  font-size: large;
-  flex: 0 0 40%;
-  min-width: 220px;
-  height: 5vh;
+    padding: 0;
+    margin: 0;
+    font-size: large;
+    flex: 0 0 40%;
+    min-width: 220px;
+    height: 5vh;
 }
 
 .App-link {
-  color: #09d3ac;
+    color: #09d3ac;
 }
 
 #componentContainer {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width:100%;
-  justify-content: center;
-  align-content:center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
 .goHomeForm {
-  height:5%;
+    height: 5%;
 }
 
 .components {
-  height:90%;
-  display: flex;
-  flex-direction: column;
-  width:100%;
-  justify-content: center;
-  align-content:center;
-  align-items: center;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }

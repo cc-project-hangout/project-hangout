@@ -29,7 +29,7 @@ export default class App extends React.Component {
       console.log("Params are OK.Started search.");
       this.setState({ filtered: true });
     } else {
-      alert("Check Your Input");
+      window.alert("Check Your Input");
     }
   };
 
