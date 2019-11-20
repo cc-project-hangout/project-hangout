@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import axios from "axios";
+import axios from "axios";
 import Hotel from "./Hotel";
 import "./styles/Hotels.css";
 
@@ -7,50 +7,29 @@ export default class Hotels extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hotels: [
-        {
-          min_total_price: 500,
-          currency_code: "USD",
-          review_score: 5,
-          address: "123 Fake St",
-          photos:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Tamatsukuri_onsen_yado02s3648.jpg/1024px-Tamatsukuri_onsen_yado02s3648.jpg",
-          city: "Tokyo",
-          hotel_name: "Nate's Ryokan"
-        },
-        {
-          min_total_price: 5,
-          currency_code: "USD",
-          review_score: 1,
-          address: "124 Fake St",
-          photos:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ryokan_interior%2C_door_and_stairs.jpg/1024px-Ryokan_interior%2C_door_and_stairs.jpg",
-          city: "Osaka",
-          hotel_name: "Nathan's Ryokan"
-        },
-        {
-          min_total_price: 50,
-          currency_code: "USD",
-          review_score: 3,
-          address: "125 Fake St",
-          photos:
-            "https://photos.smugmug.com/Osaka/Osaka-Categories/i-7XbMJwd/0/XL/Osaka_Ryokan-XL.jpg",
-          city: "Fukuoka",
-          hotel_name: "Nathaniel's Ryokan"
-        }
-      ],
-      currentHotel: 0
+      hotels: [],
+      currentHotel: 0,
     };
   }
 
   componentDidMount() {
-    // axios.post("/api/hotels", {
-    //   city: this.props.cityName,
-    //   arrivalDate: this.props.arrivalDate,
-    //   departureDate: this.props.departureDate,
-    //   minPrice: this.props.minPrice,
-    //   maxPrice: this.props.maxPrice
-    // });
+    axios
+      .post("api/hotels", {
+        city: this.props.cityName,
+        arrivalDate: this.props.arrivalDate,
+        departureDate: this.props.departureDate,
+        minPrice: this.props.minPrice,
+        maxPrice: this.props.maxPrice,
+      })
+      .then(list => {
+        console.log(list);
+        this.setState({ hotels: list.data ? list.data.filter(x => x !== null) : [] }, function() {
+          console.log(this.state);
+        });
+      })
+      .catch(err => {
+        console.log("Error: ", err);
+      });
   }
 
   getNextHotel = () => {
@@ -77,25 +56,38 @@ export default class Hotels extends Component {
     const hotels = this.state.hotels.map(hotel => {
       return (
         <Hotel
-          image={hotel.photos}
-          name={hotel.hotel_name}
+          key={this.state.currentHotel}
+          image={hotel.photos.replace("square60", "square300")}
+          name={hotel.hotelName}
           city={hotel.city}
+          zip={hotel.zip}
           address={hotel.address}
-          review={hotel.review_score + " Stars"}
-          price={hotel.min_total_price + " " + hotel.currency_code}
+          review={hotel.reviewScore + (hotel.reviewScore === 1 ? " Star" : " Stars")}
+          price={hotel.minTotalPrice + " " + hotel.currencyCode}
+          available={hotel.roomsLeft + " " + (hotel.roomsLeft === 1 ? " Room Left" : " Rooms Left")}
         />
       );
     });
 
     return (
-      <div className="selectedHotel">
-        <span type="text">YOUR HOTEL</span>
-        <div className="prevHotel" onClick={this.getPrevHotel}>
-          Get Prev Hotel
-        </div>
-        {hotels[this.state.currentHotel]}
-        <div className="nextHotel" onClick={this.getNextHotel}>
-          Get New Hotel
+      <div className="hotels">
+        <h2>YOUR HOTEL</h2>
+        <div className="selectedHotel">
+          <img
+            className="arrow"
+            src="https://img.icons8.com/flat_round/64/000000/arrow-left.png"
+            alt="Left"
+            onClick={this.getPrevHotel}
+          ></img>
+          <center type="text" className="hotelInfo">
+            {hotels[this.state.currentHotel]}
+          </center>
+          <img
+            className="arrow"
+            src="https://img.icons8.com/flat_round/64/000000/arrow-right.png"
+            alt="Right"
+            onClick={this.getNextHotel}
+          ></img>
         </div>
       </div>
     );

@@ -65,7 +65,9 @@ export default class App extends React.Component {
   }
 
   setCity = e => {
-    this.setState({ selections: { ...this.state.selections, cityName: e.target.value } });
+    this.setState({
+      selections: { ...this.state.selections, cityName: e.target.value },
+    });
   };
   setArrival = e => {
     const arrivalDateUnix = new Date(e.target.value).getTime();
@@ -75,19 +77,33 @@ export default class App extends React.Component {
     const nextDayString = `${nextDay.getUTCFullYear()}-${String(nextDay.getUTCMonth() + 1).padStart(2, "0")}-${String(
       nextDay.getUTCDate()
     ).padStart(2, "0")}`;
-    this.setState({ selections: { ...this.state.selections, arriveDate: e.target.value, departDate: nextDayString } });
+    this.setState({
+      selections: {
+        ...this.state.selections,
+        arriveDate: e.target.value,
+        departDate: nextDayString,
+      },
+    });
   };
   setDeparture = e => {
-    this.setState({ selections: { ...this.state.selections, departDate: e.target.value } });
+    this.setState({
+      selections: { ...this.state.selections, departDate: e.target.value },
+    });
   };
   setHotelMin = e => {
-    this.setState({ selections: { ...this.state.selections, minPrice: e.target.value } });
+    this.setState({
+      selections: { ...this.state.selections, minPrice: e.target.value },
+    });
   };
   setHotelMax = e => {
-    this.setState({ selections: { ...this.state.selections, maxPrice: e.target.value } });
+    this.setState({
+      selections: { ...this.state.selections, maxPrice: e.target.value },
+    });
   };
   setBudget = e => {
-    this.setState({ selections: { ...this.state.selections, budget: e.target.value } });
+    this.setState({
+      selections: { ...this.state.selections, budget: e.target.value },
+    });
   };
 
   formValidation = () => {
