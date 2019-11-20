@@ -2,6 +2,8 @@ import React from "react";
 import "./App.css";
 import Events from "./components/Events";
 import Hotels from "./components/Hotels";
+import logo_name from "./assets/logo_name_white.png";
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -29,7 +31,7 @@ export default class App extends React.Component {
       console.log("Params are OK.Started search.");
       this.setState({ filtered: true });
     } else {
-      alert("Check Your Input");
+      this.setState({ dataInvalid: true });
     }
   };
 
@@ -37,6 +39,7 @@ export default class App extends React.Component {
     e.preventDefault();
 
     this.setState({
+      dataInvalid: false,
       filtered: false,
       selections: {
         cityName: "",
@@ -118,6 +121,24 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
+        {this.state.dataInvalid ? (
+          <div
+            id="blinder"
+            onClick={() => {
+              this.setState({ dataInvalid: false });
+            }}
+          >
+            <h1> Please Check you input! </h1>
+            <h2> Please check that the City Name is entered </h2>
+            <h2> Please select a planned arrival date </h2>
+            <h2> Please make sure that the planned departure date is after the arrival date </h2>
+          </div>
+        ) : (
+          <div />
+        )}
+        <div className="app-name">
+          <img className="app-name" src={logo_name} alt="the logo of EvenTrip" />
+        </div>
         {!this.state.filtered ? (
           <form className="user-input" value="">
             <input id="cityName" type="text" placeholder="City" onChange={this.setCity}></input>
@@ -145,7 +166,7 @@ export default class App extends React.Component {
                   this.handleDateField(e);
                 }}
                 onChange={this.setDeparture}
-                // min={th}
+                min={this.state.selections.arriveDate}
                 value={this.state.selections.departDate}
                 className="date-pick"
                 placeholder="Departure Date"
@@ -187,8 +208,7 @@ export default class App extends React.Component {
                   this.handleSeachClicked(e);
                 }}
               >
-                {" "}
-                SEARCH{" "}
+                SEARCH
               </button>
               <button
                 className="form-button"
@@ -196,8 +216,7 @@ export default class App extends React.Component {
                   this.handleBackOrCancel(e);
                 }}
               >
-                {" "}
-                CLEAR{" "}
+                CLEAR
               </button>
             </div>
           </form>
@@ -210,8 +229,7 @@ export default class App extends React.Component {
                   this.handleBackOrCancel(e);
                 }}
               >
-                {" "}
-                GO BACK TO SEARCH{" "}
+                GO BACK TO SEARCH
               </button>
             </form>
             <div>

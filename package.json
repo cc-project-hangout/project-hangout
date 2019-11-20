@@ -28,7 +28,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint --fix",
+      "eslint --fix --ignore-pattern '!.eslintrc.js'",
       "git add"
     ]
   },
@@ -49,12 +49,14 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
+    "chai": "^4.2.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.4.3",
+    "mocha": "^6.2.2",
     "nodemon": "^1.19.4"
   },
   "proxy": "http://localhost:5000"

@@ -83,6 +83,7 @@ export default class Events extends Component {
           venue={event.venue}
           description={event.description}
           startTime={event.startTime}
+          key={event.title} // TODO: Change key ids
         />
       );
     });
@@ -104,7 +105,7 @@ export default class Events extends Component {
 //props
 /*
 cityName
-arrivalDate 
+arrivalDate
 departureDate
 eventBudget
 */
