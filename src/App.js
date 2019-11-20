@@ -54,9 +54,9 @@ export default class App extends React.Component {
         ) : (
           <form className="user-input" value="">
             <button className="goHome" onClick={(e) => {this.handleBackOrCancel(e)}}> GO BACK TO SEARCH </button>
-            <p>
+          
               <Events />
-            </p>
+            
 
           </form>
 
