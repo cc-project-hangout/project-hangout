@@ -27,9 +27,9 @@ app.post("/api/events", async (req, res) => {
   try {
     const events = await getEvents(req.body.city, req.body.date);
     res.json(events);
-    res.sendStatus(200);
+    // res.sendStatus(200);
   } catch (e) {
-    throw new Error("hotel error");
+    throw new Error("event error");
   }
 });
 
