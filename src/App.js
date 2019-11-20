@@ -101,7 +101,13 @@ export default class App extends React.Component {
             </button>
             <p>
               <Events />
-              <Hotels />
+              <Hotels
+                cityName="this.state.cityName"
+                arrivalDate="this.state.arrivalDate"
+                departureDate="this.state.departureDate"
+                minPrice="this.state.minPrice"
+                maxPrice="this.state.maxPrice"
+              />
             </p>
           </form>
         )}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import axios from "axios";
+//import axios from "axios";
 import Hotel from "./Hotel";
 import "./styles/Hotels.css";
 
@@ -9,8 +9,8 @@ export default class Hotels extends Component {
     this.state = {
       hotels: [
         {
-          min_total_price: 50000,
-          currency_code: "JPY",
+          min_total_price: 500,
+          currency_code: "USD",
           review_score: 5,
           address: "123 Fake St",
           photos:
@@ -19,8 +19,8 @@ export default class Hotels extends Component {
           hotel_name: "Nate's Ryokan"
         },
         {
-          min_total_price: 500,
-          currency_code: "JPY",
+          min_total_price: 5,
+          currency_code: "USD",
           review_score: 1,
           address: "124 Fake St",
           photos:
@@ -29,8 +29,8 @@ export default class Hotels extends Component {
           hotel_name: "Nathan's Ryokan"
         },
         {
-          min_total_price: 5000,
-          currency_code: "JPY",
+          min_total_price: 50,
+          currency_code: "USD",
           review_score: 3,
           address: "125 Fake St",
           photos:
@@ -39,21 +39,31 @@ export default class Hotels extends Component {
           hotel_name: "Nathaniel's Ryokan"
         }
       ],
-      currentHotel: 2
+      currentHotel: 0
     };
   }
 
   componentDidMount() {
     // axios.post("/api/hotels", {
-    //   city: this.props.selection.cityName,
-    //   arrivalDate: this.props.selection.arrivalDate,
-    //   departureDate: this.props.selection.departureDate,
-    //   minPrice: this.props.selection.minPrice,
-    //   maxPrice: this.props.selection.maxPrice
+    //   city: this.props.cityName,
+    //   arrivalDate: this.props.arrivalDate,
+    //   departureDate: this.props.departureDate,
+    //   minPrice: this.props.minPrice,
+    //   maxPrice: this.props.maxPrice
     // });
   }
 
-  getNewHotel = () => {
+  getNextHotel = () => {
+    const hotelAmount = this.state.hotels.length - 1;
+    const newHotel = this.state.currentHotel + 1;
+    if (this.state.currentHotel === hotelAmount) {
+      this.setState({ currentHotel: 0 });
+    } else {
+      this.setState({ currentHotel: newHotel });
+    }
+  };
+
+  getPrevHotel = () => {
     const hotelAmount = this.state.hotels.length - 1;
     const newHotel = this.state.currentHotel - 1;
     if (this.state.currentHotel === 0) {
@@ -80,8 +90,13 @@ export default class Hotels extends Component {
     return (
       <div className="selectedHotel">
         <span type="text">YOUR HOTEL</span>
+        <div className="prevHotel" onClick={this.getPrevHotel}>
+          Get Prev Hotel
+        </div>
         {hotels[this.state.currentHotel]}
-        <div onClick={this.getNewHotel}>Get New Hotel</div>
+        <div className="nextHotel" onClick={this.getNextHotel}>
+          Get New Hotel
+        </div>
       </div>
     );
   }
