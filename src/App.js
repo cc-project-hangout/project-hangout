@@ -140,8 +140,8 @@ export default class App extends React.Component {
             </div>
           </form>
         ) : (
-          <div>
-          <form className="user-input" value="">
+          <div id="componentContainer">
+          <form className="goHomeForm" value="">
             <button
               className="goHome"
               onClick={e => {
@@ -152,7 +152,7 @@ export default class App extends React.Component {
               GO BACK TO SEARCH{" "}
             </button>
           </form>
-          <div>
+          <div className="components">
               <Events />
               <Hotels
                 cityName={this.state.selections.cityName}

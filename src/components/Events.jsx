@@ -80,13 +80,13 @@ export default class Events extends Component {
         return (
             <div id ="eventContainer">
             <div className="leftArrow" onClick={this.checkPreviousEvent}>
-                LEFT
+            <img className="image" src="https://img.icons8.com/flat_round/64/000000/arrow-left.png" />
             </div>
             <div className="events">
                 {events[this.state.eventIndex]}
             </div>
             <div className="rightArrow" onClick={this.checkNextEvent}>
-               <img src="../assets/arrow.png" />
+            <img className="image" src="https://img.icons8.com/flat_round/64/000000/arrow-right.png" />
             </div>
             </div>
             
