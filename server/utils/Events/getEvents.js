@@ -4,6 +4,7 @@ var convert = require("xml-js");
 require("dotenv").config();
 
 const getEvents = async (city, date) => {
+  //rakuten eventful-api
   const events = await axios.get(
     `https://community-eventful.p.rapidapi.com/events/search?location=${city}&date=${date}&app_key=${process.env.EVENTFUL_API_APP_KEY}`,
     {
@@ -20,6 +21,30 @@ const getEvents = async (city, date) => {
   }).search.events.event;
 
   let arrayOfInfoWeNeed = [];
+
+  //ticketmaster-api
+  // const countryCode = "US";
+  axios(
+    // `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&apikey=${process.env.TICKETMASTER_API_KEY}`
+    `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TICKETMASTER_API_KEY}`
+  ).then(function(res) {
+    const data = res.data._embedded.events[0];
+    console.log("**********************");
+    console.log(`res`, res);
+    console.log("**********************");
+    console.log(`data`, data);
+
+    const sortedObj = {
+      title: data["name"],
+      image: data["images"][0]["url"],
+      venue: data["_embedded"]["venues"][0]["name"],
+      url: data["url"],
+      description: "More detail on the link",
+      startTime: data["dates"]["start"]["localDate"]
+    };
+    arrayOfInfoWeNeed.push(sortedObj);
+  });
+
   arrayOfEventObj.forEach(eventfulObj => {
     const sortedObj = {
       title: eventfulObj["title"]["_text"],
@@ -32,7 +57,8 @@ const getEvents = async (city, date) => {
     if (sortedObj["image"] !== undefined) {
       sortedObj["image"] = sortedObj["image"]["_text"];
     } else {
-      sortedObj["image"] = "./src/assets/default.png";
+      sortedObj["image"] =
+        "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png";
     }
     arrayOfInfoWeNeed.push(sortedObj);
   });
