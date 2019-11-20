@@ -37,7 +37,17 @@ export default class App extends React.Component {
   handleBackOrCancel = e => {
     e.preventDefault();
 
-    this.setState({ filtered: false });
+    this.setState({
+      filtered: false,
+      selections: {
+        cityName: "",
+        arriveDate: "",
+        departDate: "",
+        minPrice: 0,
+        maxPrice: 9999,
+        budget: 0
+      },
+    });
   };
 
   handleDateField(e) {
@@ -76,8 +86,11 @@ export default class App extends React.Component {
     this.setState({ selections: {...this.state.selections, budget: e.target.value}});
   }
   
-  formValidation= (city, startDate, endDate) => {
-    return city !== "" && startDate !== "" && endDate !== "" && endDate > startDate;
+  formValidation= () => {
+    const city = this.state.selections.cityName;
+    const startDateUnix = new Date(this.state.selections.arriveDate);
+    const endDateUnix = new Date(this.state.selections.departDate);
+    return city !== "" && this.state.selections.arriveDate !== "" && this.state.selections.departDate !== "" && endDateUnix > startDateUnix;
   }
 
   render() {
