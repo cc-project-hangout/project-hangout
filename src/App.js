@@ -123,7 +123,6 @@ export default class App extends React.Component {
         <div className="app-name">
           <img className="app-name" src={logo_name} alt="the logo of EvenTrip" />
         </div>
-        {/* <h1 className="app-name">Eventrip</h1> */}
         {!this.state.filtered ? (
           <form className="user-input" value="">
             <input id="cityName" type="text" placeholder="City" onChange={this.setCity}></input>
@@ -151,7 +150,7 @@ export default class App extends React.Component {
                   this.handleDateField(e);
                 }}
                 onChange={this.setDeparture}
-                // min={th}
+                min={this.state.selections.arriveDate}
                 value={this.state.selections.departDate}
                 className="date-pick"
                 placeholder="Departure Date"
@@ -193,8 +192,7 @@ export default class App extends React.Component {
                   this.handleSeachClicked(e);
                 }}
               >
-                {" "}
-                SEARCH{" "}
+                SEARCH
               </button>
               <button
                 className="form-button"
@@ -202,8 +200,7 @@ export default class App extends React.Component {
                   this.handleBackOrCancel(e);
                 }}
               >
-                {" "}
-                CLEAR{" "}
+                CLEAR
               </button>
             </div>
           </form>
