@@ -9,34 +9,34 @@ export default class Hotels extends Component {
     this.state = {
       hotels: [
         {
-          min_total_price: 500,
-          currency_code: "USD",
-          review_score: 5,
+          minTotalPrice: 500,
+          currencyCode: "USD",
+          reviewScore: 5,
           address: "123 Fake St",
           photos:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Tamatsukuri_onsen_yado02s3648.jpg/1024px-Tamatsukuri_onsen_yado02s3648.jpg",
           city: "Tokyo",
-          hotel_name: "Nate's Ryokan"
+          hotelName: "Nate's Ryokan"
         },
         {
-          min_total_price: 5,
-          currency_code: "USD",
-          review_score: 1,
+          minTotalPrice: 5,
+          currencyCode: "USD",
+          reviewScore: 1,
           address: "124 Fake St",
           photos:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ryokan_interior%2C_door_and_stairs.jpg/1024px-Ryokan_interior%2C_door_and_stairs.jpg",
           city: "Osaka",
-          hotel_name: "Nathan's Ryokan"
+          hotelName: "Nathan's Ryokan"
         },
         {
-          min_total_price: 50,
-          currency_code: "USD",
-          review_score: 3,
+          minTotalPrice: 50,
+          currencyCode: "USD",
+          reviewScore: 3,
           address: "125 Fake St",
           photos:
             "https://photos.smugmug.com/Osaka/Osaka-Categories/i-7XbMJwd/0/XL/Osaka_Ryokan-XL.jpg",
           city: "Fukuoka",
-          hotel_name: "Nathaniel's Ryokan"
+          hotelName: "Nathaniel's Ryokan"
         }
       ],
       currentHotel: 0
@@ -78,28 +78,36 @@ export default class Hotels extends Component {
       return (
         <Hotel
           image={hotel.photos}
-          name={hotel.hotel_name}
+          name={hotel.hotelName}
           city={hotel.city}
           address={hotel.address}
-          review={hotel.review_score + " Stars"}
-          price={hotel.min_total_price + " " + hotel.currency_code}
+          review={
+            hotel.reviewScore + (hotel.reviewScore === 1 ? " Star" : " Stars")
+          }
+          price={hotel.minTotalPrice + " " + hotel.currencyCode}
         />
       );
     });
 
     return (
       <div className="hotels">
-        <h3>YOUR HOTEL</h3>
+        <h2>YOUR HOTEL</h2>
         <div className="selectedHotel">
-          <div className="prevHotel" onClick={this.getPrevHotel}>
-            Get Prev Hotel
-          </div>
-          <span type="text" className="hotelInfo">
+          <img
+            className="arrow"
+            src="https://img.icons8.com/flat_round/64/000000/arrow-left.png"
+            alt="Left"
+            onClick={this.getPrevHotel}
+          ></img>
+          <center type="text" className="hotelInfo">
             {hotels[this.state.currentHotel]}
-          </span>
-          <div className="nextHotel" onClick={this.getNextHotel}>
-            Get Next Hotel
-          </div>
+          </center>
+          <img
+            className="arrow"
+            src="https://img.icons8.com/flat_round/64/000000/arrow-right.png"
+            alt="Right"
+            onClick={this.getNextHotel}
+          ></img>
         </div>
       </div>
     );
