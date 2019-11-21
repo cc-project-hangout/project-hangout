@@ -1,11 +1,30 @@
 #eventContainer {
     border: 2px black solid;
-    height: 60%;
-    width: 100%;
+    height: 20vw;
+    width: 80%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
-.image {
-    height: 10%;
-    width: 10%;
+.events {
+    width:90%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.arrowImage {
+    height: 100%;
+    width: 100%;
+}
+
+.leftArrow {
+    width:5%;
+}
+
+.rightArrow {
+    width:5%;
 }
