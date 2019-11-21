@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const { loadHotels } = require("./utils/Hotels/loadHotels");
+const { loadHotels, loadCities } = require("./utils/Hotels/index.js");
 const { getEvents } = require("./utils/Events/getEvents");
 
 // const morgan = require("morgan");
@@ -10,6 +10,16 @@ const { getEvents } = require("./utils/Events/getEvents");
 app.use("/api", express.json(), express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../build/")));
+
+app.post("/api/city", async (req, res) => {
+  try {
+    const cityName = req.body[0];
+    const cities = await loadCities(cityName);
+    res.json(cities);
+  } catch (e) {
+    throw new Error("");
+  }
+});
 
 app.post("/api/hotels", async (req, res) => {
   try {
