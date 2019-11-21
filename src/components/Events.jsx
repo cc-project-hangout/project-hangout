@@ -32,16 +32,15 @@ export default class Events extends Component {
   }
 
   componentDidMount() {
-    
 
-    const updatedDate = this.props.arriveDate.split("-").join("") + "00";
-    const nextDate = "2019062100";
-    const totalDates = updatedDate + "-" + nextDate;
+    const arrivalDate = this.props.arriveDate.split("-").join("") + "00";
+    const departureDate = this.props.departDate.split("-").join("") + "00";
+    const totalDates = arrivalDate + "-" + departureDate;
     console.log(totalDates);
     axios
       .post("/api/events", {
         city: this.props.cityName,
-        date: updatedDate,
+        date: totalDates,
       })
       .then(response => {
         //if we get multiple objects, can just put them in an array
@@ -75,9 +74,9 @@ export default class Events extends Component {
   };
 
   render() {
-    if(this.state.loading === true) {
-       // <img src="https://media1.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"/>
-    } 
+    // if(this.state.loading === true) {
+    //    // <img src="https://media1.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"/>
+    // } 
     const events = this.state.events.map((event,index) => {
       return (
         <Event

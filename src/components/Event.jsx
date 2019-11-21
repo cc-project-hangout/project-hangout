@@ -5,6 +5,11 @@ export default class Event extends Component {
     super(props);
   }
   render() {
+      let startTime = this.props.startTime;
+      if(startTime.includes('00:00:00')) {
+       startTime = startTime.replace('00:00:00', 'TBD')
+      }
+      console.log(startTime, 'hello')
     return (
       <div id="singleEventContainer">
         
@@ -16,7 +21,7 @@ export default class Event extends Component {
                 <a href={this.props.url} id="url">Link to Event</a>
                 <div id="venue">Location: {this.props.venue}</div>
                 {/* <div id="description">{this.props.description}</div> */}
-                <div id="startTime">Date & Time {this.props.startTime}</div>
+                <div id="startTime">Date & Time {startTime}</div>
             </div>
             
             <div id="eventPic"> 
