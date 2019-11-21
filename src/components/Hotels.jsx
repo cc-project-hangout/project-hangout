@@ -66,7 +66,7 @@ export default class Hotels extends Component {
           city={hotel.city}
           zip={hotel.zip}
           address={hotel.address}
-          review={hotel.reviewScore + (hotel.reviewScore === 1 ? " Star" : " Stars")}
+          review={hotel.reviewScore}
           price={hotel.minTotalPrice + " " + hotel.currencyCode}
           available={hotel.roomsLeft + " " + (hotel.roomsLeft === 1 ? " Room Left" : " Rooms Left")}
         />

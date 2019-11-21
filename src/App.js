@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import Events from "./components/Events";
 import Hotels from "./components/Hotels";
-import Cities from "./components/Cities";
 import logo_name from "./assets/logo_name_white.png";
 
 export default class App extends React.Component {
@@ -143,7 +142,7 @@ export default class App extends React.Component {
         </div>
         {!this.state.filtered ? (
           <form className="user-input" value="">
-            <Cities cityName={this.state.selections.cityName} onChange={this.setCity} />
+            <input id="cityName" type="text" placeholder="City" onChange={this.setCity}></input>
             <div className="two-column-div">
               <input
                 id="arriveDate"
