@@ -1,8 +1,63 @@
-#eventContainer {
-    display: flex;
+
+
+#singleEventContainer {
+    height:100%;
+    display:flex;
+    width:700px;
     flex-direction: column;
+    align-items: center;
+    align-content: center;
 }
+
+
+/* #titlePhotoContainer {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    align-content: center;
+    height:40%;
+} */
+
+#title {
+   
+    font-size:2.5vw;
+}
+
+
 #image {
-    height: 15%;
-    width: 15%;
+    margin-left:1%;
+    height: 100%;
+}
+
+#venue {
+    font-size:2vw;
+}
+
+#startTime {
+    font-size: 2vw;
+}
+
+#description {
+    font-size:2vw
+}
+
+#url {
+    margin-top:5%;
+    font-size:2vw;
+}
+
+#eventInfoContainer {
+    display: flex;
+    width:100%;
+    height:100%;
+    margin-left:5%;
+}
+
+#eventPic {
+    width:30%;
+    height:60%;
+}
+
+#eventText {
+    width:60%
 }

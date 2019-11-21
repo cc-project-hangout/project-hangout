@@ -4,9 +4,6 @@ const app = express();
 const { loadHotels, loadCities } = require("./utils/Hotels/index.js");
 const { getEvents } = require("./utils/Events/getEvents");
 
-// const morgan = require("morgan");
-// app.use(morgan("dev"));
-
 app.use("/api", express.json(), express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../build/")));
@@ -33,7 +30,6 @@ app.post("/api/hotels", async (req, res) => {
 
 app.post("/api/events", async (req, res) => {
   try {
-    console.log("h");
     const events = await getEvents(req.body.city, req.body.date);
     res.json(events);
   } catch (e) {
