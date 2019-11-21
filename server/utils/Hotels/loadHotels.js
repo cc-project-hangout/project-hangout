@@ -1,19 +1,9 @@
-const axios = require("axios");
-require("dotenv").config();
+const { fetchCities, fetchLocations } = require("./fetchApi");
 
 const storeDestIdOfLargestCity = async cityName => {
-  const cities = await axios.get(
-    `https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete?languagecode=en-us&text=${cityName}`,
-    {
-      headers: {
-        "x-rapidapi-host": "apidojo-booking-v1.p.rapidapi.com",
-        "x-rapidapi-key": process.env.HOTEL_API_KEY,
-      },
-    }
-  );
-  if (cities === undefined) return "";
-
-  const destId = cities.data.reduce((a, c) => {
+  const allCities = await fetchCities(cityName);
+  if (allCities === undefined) return "";
+  const destId = allCities.data.reduce((a, c) => {
     if (a === 0) a = c;
     if (c.hotels > a.hotels) a = c;
     return a;
@@ -23,17 +13,9 @@ const storeDestIdOfLargestCity = async cityName => {
 };
 
 const fetchHotels = async (city, destId) => {
-  const locations = await axios.get(
-    `https://apidojo-booking-v1.p.rapidapi.com/properties/list?price_filter_currencycode=USD&travel_purpose=leisure&categories_filter=price${city.minPrice}-${city.maxPrice}&free_cancellation%3A%3A1%2Cclass%3A%3A1%2Cclass%3A%3A0%2Cclass%3A%3A2&search_id=none&order_by=popularity&children_qty=2&languagecode=en-us&children_age=5%2C7&search_type=city&offset=0&dest_ids=${destId}&guest_qty=1&arrival_date=${city.arrivalDate}&departure_date=${city.departureDate}&room_qty=1`,
-    {
-      headers: {
-        "x-rapidapi-host": "apidojo-booking-v1.p.rapidapi.com",
-        "x-rapidapi-key": process.env.HOTEL_API_KEY,
-      },
-    }
-  );
+  const alllocations = await fetchLocations(city.minPrice, city.maxPrice, city.arrivalDate, city.departureDate, destId);
 
-  return locations.data.result.map(hotel => {
+  return alllocations.data.result.map(hotel => {
     if (hotel.available_rooms > 0) {
       return {
         minTotalPrice: hotel.min_total_price,
