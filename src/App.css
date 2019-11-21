@@ -1,4 +1,3 @@
-html,
 body,
 #root,
 .App {
@@ -6,7 +5,7 @@ body,
     width: 100%;
     flex: 1 1 100%;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -124,11 +123,34 @@ h2 {
 }
 
 .components {
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+  height:90%;
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  justify-content: center;
+  align-content:center;
+  align-items: center;
+}
+
+
+@keyframes gm-slidein {
+    from {
+        -webkit-transform:translate3d(0,-100%,0);
+        opacity:0;
+        transform:translate3d(0,-100%,0);
+    }
+    
+    to {
+        -webkit-transform:none;
+        opacity:1;
+        transform:none;
+    }
+}
+
+.heropanel__content {
+    -moz-animation:gm-slidein 3s 1;
+    -ms-animation:gm-slidein 3s 1;
+    -o-animation:gm-slidein 3s 1;
+    -webkit-animation:gm-slidein 3s 1;
+    animation:gm-slidein 3s 1;
 }

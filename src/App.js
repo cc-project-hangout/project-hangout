@@ -39,6 +39,7 @@ export default class App extends React.Component {
     e.preventDefault();
 
     this.setState({
+      videoUrl: "http://vodkabears.github.io/vide/video/ocean.mp4",
       dataInvalid: false,
       filtered: false,
       selections: {
@@ -120,7 +121,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App heropanel__content">
         {this.state.dataInvalid ? (
           <div
             id="blinder"
