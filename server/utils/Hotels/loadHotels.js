@@ -26,6 +26,7 @@ const fetchHotels = async (city, destId) => {
         hotelName: hotel.hotel_name,
         reviewScore: hotel.review_score,
         roomsLeft: hotel.available_rooms,
+        url: hotel.url,
       };
     }
   });

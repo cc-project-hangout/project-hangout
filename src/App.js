@@ -11,8 +11,8 @@ export default class App extends React.Component {
       filtered: false,
       allCityOptions: [],
       selections: {
-        cityName: "Tokyo",
-        arriveDate: "2019-06-20",
+        cityName: "",
+        arriveDate: "",
         departDate: "",
         minPrice: 0,
         maxPrice: 9999,
