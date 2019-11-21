@@ -1,8 +1,8 @@
 const axios = require("axios");
 require("dotenv").config();
 
-const fetchCities = name =>
-  axios.get("https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete", {
+const fetchCities = async name => {
+  const cities = await axios.get("https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete", {
     params: {
       languagecode: "en-us",
       text: name,
@@ -12,9 +12,11 @@ const fetchCities = name =>
       "x-rapidapi-key": process.env.HOTEL_API_KEY,
     },
   });
+  return cities.data;
+};
 
-const fetchLocations = (minPrice, maxPrice, arrivalDate, departureDate, destId) =>
-  axios.get("https://apidojo-booking-v1.p.rapidapi.com/properties/list", {
+const fetchLocations = async (minPrice, maxPrice, arrivalDate, departureDate, destId) => {
+  const locations = await axios.get("https://apidojo-booking-v1.p.rapidapi.com/properties/list", {
     params: {
       price_filter_currencycode: "USD",
       travel_purpose: "leisure",
@@ -38,6 +40,8 @@ const fetchLocations = (minPrice, maxPrice, arrivalDate, departureDate, destId) 
       "x-rapidapi-key": process.env.HOTEL_API_KEY,
     },
   });
+  return locations.data.result;
+};
 
 module.exports = {
   fetchCities,

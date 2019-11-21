@@ -3,7 +3,7 @@ const { fetchCities, fetchLocations } = require("./fetchApi");
 const storeDestIdOfLargestCity = async cityName => {
   const allCities = await fetchCities(cityName);
   if (allCities === undefined) return "";
-  const destId = allCities.data.reduce((a, c) => {
+  const destId = allCities.reduce((a, c) => {
     if (a === 0) a = c;
     if (c.hotels > a.hotels) a = c;
     return a;
@@ -15,7 +15,7 @@ const storeDestIdOfLargestCity = async cityName => {
 const fetchHotels = async (city, destId) => {
   const alllocations = await fetchLocations(city.minPrice, city.maxPrice, city.arrivalDate, city.departureDate, destId);
 
-  return alllocations.data.result.map(hotel => {
+  return alllocations.map(hotel => {
     if (hotel.available_rooms > 0) {
       return {
         minTotalPrice: hotel.min_total_price,
