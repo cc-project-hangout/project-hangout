@@ -17,7 +17,7 @@ app.post("/api/city", async (req, res) => {
     const cities = await loadCities(cityName);
     res.json(cities);
   } catch (e) {
-    throw new Error("");
+    res.json([]);
   }
 });
 

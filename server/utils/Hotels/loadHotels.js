@@ -31,13 +31,12 @@ const fetchHotels = async (city, destId) => {
   });
 };
 
-const filterHotelsByCurrency = async (hotels, currency) => {
-  return hotels.filter(
+const filterHotelsByCurrency = async (hotels, currency) =>
+  hotels.filter(
     hotel =>
       Number(hotel.minTotalPrice) > currency.convertedMinPrice &&
       Number(hotel.minTotalPrice) < currency.convertedMaxPrice
   );
-};
 
 const loadHotels = async cityInfo => {
   const { destId, country } = await storeCountryAndDestId(cityInfo.city);
