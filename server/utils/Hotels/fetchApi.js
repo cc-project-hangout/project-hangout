@@ -1,6 +1,42 @@
+require("dotenv").config();
 const axios = require("axios");
 const RAKUTEN_HOST = "apidojo-booking-v1.p.rapidapi.com";
-require("dotenv").config();
+const REST_COUNTRY_HOST = "ajayakv-rest-countries-v1.p.rapidapi.com";
+const CURRENCY_CONVERTER_HOST = "currency-converter5.p.rapidapi.com";
+
+const fetchRestCountry = async () => {
+  try {
+    const country = await axios.get(`https://${REST_COUNTRY_HOST}/currency/convert`, {
+      headers: {
+        "x-rapidapi-host": REST_COUNTRY_HOST,
+        "x-rapidapi-key": process.env.HOTEL_API_KEY,
+      },
+    });
+    return country.data;
+  } catch (e) {
+    throw new Error(`REST country api couldn't fetch${e}`);
+  }
+};
+
+const fetchCurrencyConverter = async (currencyCode, amount) => {
+  try {
+    const currency = await axios.get(`https://${CURRENCY_CONVERTER_HOST}/rest/v1/all`, {
+      params: {
+        format: "json",
+        from: "USD",
+        to: currencyCode,
+        amount: amount,
+      },
+      headers: {
+        "x-rapidapi-host": CURRENCY_CONVERTER_HOST,
+        "x-rapidapi-key": process.env.HOTEL_API_KEY,
+      },
+    });
+    return currency.data.rates[currencyCode]["rate_for_amount"];
+  } catch (e) {
+    throw new Error(`currency converter api couldn't fetch${e}`);
+  }
+};
 
 const fetchCities = async name => {
   try {
@@ -84,4 +120,6 @@ module.exports = {
   fetchCities,
   fetchLocations,
   fetchFiltersList,
+  fetchRestCountry,
+  fetchCurrencyConverter,
 };
