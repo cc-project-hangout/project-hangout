@@ -4,9 +4,6 @@ const app = express();
 const { loadHotels, loadCities } = require("./utils/Hotels/index.js");
 const { getEvents } = require("./utils/Events/getEvents");
 
-// const morgan = require("morgan");
-// app.use(morgan("dev"));
-
 app.use("/api", express.json(), express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../build/")));
