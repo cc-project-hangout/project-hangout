@@ -1,23 +1,23 @@
 .selectedHotel {
-  border: 3px black solid;
-  height: 40%;
-  width: 50%;
-  display: flex;
-  margin: auto;
-  max-width: 500px;
-  padding: 10px;
+    border: 3px black solid;
+    height: 40%;
+    width: 50%;
+    display: flex;
+    margin: auto;
+    max-width: 500px;
+    padding: 10px;
 }
 
 .arrow {
-  width: 20%;
-  height: 95px;
+    width: 20%;
+    height: 95px;
 }
 
 .hotelInfo {
-  text-align: center;
-  width: 60%;
+    text-align: center;
+    width: 60%;
 }
 
 .hotels {
-  text-align: center;
+    text-align: center;
 }
