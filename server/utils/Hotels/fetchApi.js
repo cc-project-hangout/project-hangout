@@ -1,15 +1,16 @@
 const axios = require("axios");
+const RAKUTEN_HOST = "apidojo-booking-v1.p.rapidapi.com";
 require("dotenv").config();
 
 const fetchCities = async name => {
   try {
-    const cities = await axios.get("https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete", {
+    const cities = await axios.get(`https://${RAKUTEN_HOST}/locations/auto-complete`, {
       params: {
         languagecode: "en-us",
         text: name,
       },
       headers: {
-        "x-rapidapi-host": "apidojo-booking-v1.p.rapidapi.com",
+        "x-rapidapi-host": RAKUTEN_HOST,
         "x-rapidapi-key": process.env.HOTEL_API_KEY,
       },
     });
@@ -19,9 +20,37 @@ const fetchCities = async name => {
   }
 };
 
+const fetchFiltersList = async (destId, arrivalDate, departureDate) => {
+  try {
+    const filtersList = await axios.get(`https://${RAKUTEN_HOST}/filters/list`, {
+      params: {
+        children_qty: 2,
+        languagecode: "en-us",
+        children_age: "5%2C7",
+        price_filter_currencycode: "USD",
+        categories_filter: "price%3A%3A9-40%2Cfree_cancellation%3A%3A1%2Cclass%3A%3A1%2Cclass%3A%3A0%2Cclass%3A%3A2",
+        arrival_date: arrivalDate,
+        dest_ids: destId,
+        departure_date: departureDate,
+        guest_qty: 1,
+        room_qty: 2,
+        search_type: "city",
+      },
+      headers: {
+        "x-rapidapi-host": RAKUTEN_HOST,
+        "x-rapidapi-key": process.env.HOTEL_API_KEY,
+      },
+    });
+    console.log(filtersList.data);
+    return filtersList.data;
+  } catch (e) {
+    throw new Error(`Filter list couldn't fetch ${e}`);
+  }
+};
+
 const fetchLocations = async (minPrice, maxPrice, arrivalDate, departureDate, destId) => {
   try {
-    const locations = await axios.get("https://apidojo-booking-v1.p.rapidapi.com/properties/list", {
+    const locations = await axios.get(`https://${RAKUTEN_HOST}/properties/list`, {
       params: {
         price_filter_currencycode: "USD",
         travel_purpose: "leisure",
@@ -41,7 +70,7 @@ const fetchLocations = async (minPrice, maxPrice, arrivalDate, departureDate, de
         room_qty: 1,
       },
       headers: {
-        "x-rapidapi-host": "apidojo-booking-v1.p.rapidapi.com",
+        "x-rapidapi-host": RAKUTEN_HOST,
         "x-rapidapi-key": process.env.HOTEL_API_KEY,
       },
     });
@@ -54,4 +83,5 @@ const fetchLocations = async (minPrice, maxPrice, arrivalDate, departureDate, de
 module.exports = {
   fetchCities,
   fetchLocations,
+  fetchFiltersList,
 };
