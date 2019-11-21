@@ -22,29 +22,6 @@ const getEvents = async (city, date) => {
 
   let arrayOfInfoWeNeed = [];
 
-  const formatDate = date => {
-    data.substring(0, 3) + "-" + data.substring(5, 6) + "-" + data.substring(7, 8);
-  };
-
-  const formattedData = formatDate(date);
-
-  axios(
-    // `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&apikey=${process.env.TICKETMASTER_API_KEY}`
-    `https://app.ticketmaster.com/discovery/v2/events.json?city=${city}&localStartDateTim=${formattedData}&apikey=${process.env.TICKETMASTER_API_KEY}`
-  ).then(function(res) {
-    const data = res.data._embedded.events[0];
-    const sortedObj = {
-      title: data["name"],
-      image: data["images"][0]["url"],
-      venue: data["_embedded"]["venues"][0]["name"],
-      url: data["url"],
-      description: "More detail on the link",
-      startTime: data["dates"]["start"]["localDate"],
-    };
-    console.log(sortedObj);
-    arrayOfInfoWeNeed.push(sortedObj);
-  });
-
   arrayOfEventObj.forEach(eventfulObj => {
     const sortedObj = {
       title: eventfulObj["title"]["_text"],
@@ -61,6 +38,32 @@ const getEvents = async (city, date) => {
     }
     arrayOfInfoWeNeed.push(sortedObj);
   });
+
+  const formatDate = date => {
+    date.substring(0, 3) + "-" + date.substring(5, 6) + "-" + date.substring(7, 8);
+  };
+
+  const formattedData = formatDate(date);
+  console.log(formattedData);
+
+  axios(
+    // `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&apikey=${process.env.TICKETMASTER_API_KEY}`
+    `https://app.ticketmaster.com/discovery/v2/events.json?city=${city}&localStartDateTime=${formattedData}&apikey=${process.env.TICKETMASTER_API_KEY}`
+  ).then(function(res) {
+    console.log(res);
+    const data = res.data._embedded.events[0];
+    const sortedObj = {
+      title: data["name"],
+      image: data["images"][0]["url"],
+      venue: data["_embedded"]["venues"][0]["name"],
+      url: data["url"],
+      description: "More detail on the link",
+      startTime: data["dates"]["start"]["localDate"],
+    };
+    // console.log(sortedObj);
+    arrayOfInfoWeNeed.push(sortedObj);
+  });
+
   return arrayOfInfoWeNeed;
 };
 
