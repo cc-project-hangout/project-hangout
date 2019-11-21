@@ -5,6 +5,9 @@ import "./styles/Cities.css";
 export default class Cities extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      city: "",
+    };
   }
 
   componentDidMount() {
