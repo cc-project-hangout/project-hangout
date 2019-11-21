@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const { loadHotels, loadCities, loadDollarList } = require("./utils/Hotels/index.js");
+const { loadHotels, loadCities } = require("./utils/Hotels/index.js");
 const { getEvents } = require("./utils/Events/getEvents");
 
 // const morgan = require("morgan");
@@ -21,29 +21,18 @@ app.post("/api/city", async (req, res) => {
   }
 });
 
-app.post("/api/filterlist", async (req, res) => {
-  try {
-    const cityName = req.body;
-    const dollerList = await loadDollarList(cityName[0]);
-    res.json(dollerList);
-  } catch (e) {
-    throw new Error("");
-  }
-});
-
 app.post("/api/hotels", async (req, res) => {
   try {
     const cityInfo = req.body;
     const hotels = await loadHotels(cityInfo);
     res.json(hotels);
   } catch (e) {
-    throw new Error("hotel error");
+    res.json([]);
   }
 });
 
 app.post("/api/events", async (req, res) => {
   try {
-    console.log("h");
     const events = await getEvents(req.body.city, req.body.date);
     res.json(events);
   } catch (e) {

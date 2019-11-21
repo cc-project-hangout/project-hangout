@@ -1,12 +1,12 @@
 require("dotenv").config();
 const axios = require("axios");
-const RAKUTEN_HOST = "apidojo-booking-v1.p.rapidapi.com";
+const BOOKING_HOST = "apidojo-booking-v1.p.rapidapi.com";
 const REST_COUNTRY_HOST = "ajayakv-rest-countries-v1.p.rapidapi.com";
 const CURRENCY_CONVERTER_HOST = "currency-converter5.p.rapidapi.com";
 
 const fetchRestCountry = async () => {
   try {
-    const country = await axios.get(`https://${REST_COUNTRY_HOST}/currency/convert`, {
+    const country = await axios.get(`https://${REST_COUNTRY_HOST}/rest/v1/all`, {
       headers: {
         "x-rapidapi-host": REST_COUNTRY_HOST,
         "x-rapidapi-key": process.env.HOTEL_API_KEY,
@@ -20,7 +20,7 @@ const fetchRestCountry = async () => {
 
 const fetchCurrencyConverter = async (currencyCode, amount) => {
   try {
-    const currency = await axios.get(`https://${CURRENCY_CONVERTER_HOST}/rest/v1/all`, {
+    const currency = await axios.get(`https://${CURRENCY_CONVERTER_HOST}/currency/convert`, {
       params: {
         format: "json",
         from: "USD",
@@ -32,7 +32,7 @@ const fetchCurrencyConverter = async (currencyCode, amount) => {
         "x-rapidapi-key": process.env.HOTEL_API_KEY,
       },
     });
-    return currency.data.rates[currencyCode]["rate_for_amount"];
+    return Math.floor(Number(currency.data.rates[currencyCode]["rate_for_amount"]));
   } catch (e) {
     throw new Error(`currency converter api couldn't fetch${e}`);
   }
@@ -40,13 +40,13 @@ const fetchCurrencyConverter = async (currencyCode, amount) => {
 
 const fetchCities = async name => {
   try {
-    const cities = await axios.get(`https://${RAKUTEN_HOST}/locations/auto-complete`, {
+    const cities = await axios.get(`https://${BOOKING_HOST}/locations/auto-complete`, {
       params: {
         languagecode: "en-us",
         text: name,
       },
       headers: {
-        "x-rapidapi-host": RAKUTEN_HOST,
+        "x-rapidapi-host": BOOKING_HOST,
         "x-rapidapi-key": process.env.HOTEL_API_KEY,
       },
     });
@@ -58,7 +58,7 @@ const fetchCities = async name => {
 
 const fetchFiltersList = async (destId, arrivalDate, departureDate) => {
   try {
-    const filtersList = await axios.get(`https://${RAKUTEN_HOST}/filters/list`, {
+    const filtersList = await axios.get(`https://${BOOKING_HOST}/filters/list`, {
       params: {
         children_qty: 2,
         languagecode: "en-us",
@@ -73,11 +73,11 @@ const fetchFiltersList = async (destId, arrivalDate, departureDate) => {
         search_type: "city",
       },
       headers: {
-        "x-rapidapi-host": RAKUTEN_HOST,
+        "x-rapidapi-host": BOOKING_HOST,
         "x-rapidapi-key": process.env.HOTEL_API_KEY,
       },
     });
-    console.log(filtersList.data);
+
     return filtersList.data;
   } catch (e) {
     throw new Error(`Filter list couldn't fetch ${e}`);
@@ -86,11 +86,11 @@ const fetchFiltersList = async (destId, arrivalDate, departureDate) => {
 
 const fetchLocations = async (minPrice, maxPrice, arrivalDate, departureDate, destId) => {
   try {
-    const locations = await axios.get(`https://${RAKUTEN_HOST}/properties/list`, {
+    const locations = await axios.get(`https://${BOOKING_HOST}/properties/list`, {
       params: {
         price_filter_currencycode: "USD",
         travel_purpose: "leisure",
-        categories_filter: `price${minPrice}-${maxPrice}`,
+        categories_filter: `price0-0`,
         free_cancellation: "%3A%3A1%2Cclass%3A%3A1%2Cclass%3A%3A0%2Cclass%3A%3A2",
         search_id: "none",
         order_by: "popularity",
@@ -106,7 +106,7 @@ const fetchLocations = async (minPrice, maxPrice, arrivalDate, departureDate, de
         room_qty: 1,
       },
       headers: {
-        "x-rapidapi-host": RAKUTEN_HOST,
+        "x-rapidapi-host": BOOKING_HOST,
         "x-rapidapi-key": process.env.HOTEL_API_KEY,
       },
     });

@@ -1,21 +1,20 @@
 const { fetchCities, fetchLocations } = require("./fetchApi");
+const { convertCurrency } = require("./convertCurrency");
 
-const storeDestIdOfLargestCity = async cityName => {
-  const allCities = await fetchCities(cityName);
-  if (allCities === undefined) return "";
-  const destId = allCities.reduce((a, c) => {
-    if (a === 0) a = c;
-    if (c.hotels > a.hotels) a = c;
-    return a;
-  }, 0).dest_id;
+const storeCountryAndDestId = async cityName => {
+  const city = await fetchCities(cityName);
+  if (city === undefined) return "";
 
-  return destId;
+  return {
+    destId: city[0].dest_id,
+    country: city[0].country,
+  };
 };
 
 const fetchHotels = async (city, destId) => {
-  const alllocations = await fetchLocations(city.minPrice, city.maxPrice, city.arrivalDate, city.departureDate, destId);
+  const allLocations = await fetchLocations(city.minPrice, city.maxPrice, city.arrivalDate, city.departureDate, destId);
 
-  return alllocations.map(hotel => {
+  return allLocations.map(hotel => {
     if (hotel.available_rooms > 0) {
       return {
         minTotalPrice: hotel.min_total_price,
@@ -32,10 +31,20 @@ const fetchHotels = async (city, destId) => {
   });
 };
 
+const filterHotelsByCurrency = async (hotels, currency) => {
+  return hotels.filter(
+    hotel =>
+      Number(hotel.minTotalPrice) > currency.convertedMinPrice &&
+      Number(hotel.minTotalPrice) < currency.convertedMaxPrice
+  );
+};
+
 const loadHotels = async cityInfo => {
-  const destId = await storeDestIdOfLargestCity(cityInfo.city);
-  const cities = await fetchHotels(cityInfo, destId);
-  return cities;
+  const { destId, country } = await storeCountryAndDestId(cityInfo.city);
+  const convertedCurrency = await convertCurrency(country, cityInfo.minPrice, cityInfo.maxPrice);
+  const hotels = await fetchHotels(cityInfo, destId);
+  const filteredHotels = filterHotelsByCurrency(hotels, convertedCurrency);
+  return filteredHotels;
 };
 
 module.exports = {
