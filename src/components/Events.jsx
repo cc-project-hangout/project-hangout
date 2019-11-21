@@ -8,7 +8,7 @@ export default class Events extends Component {
     this.state = {
       events: [
         {
-          title: "Sickest event ever",
+          title: "Loading...",
           image:
             "https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg",
           venue: "Test Venue",
@@ -27,12 +27,12 @@ export default class Events extends Component {
         },
       ],
       eventIndex: 0,
+      loading: true,
     };
   }
 
   componentDidMount() {
-    //'2012042500-201204200' api format
-    // our app format YYYY-MM-DD
+    
 
     const updatedDate = this.props.arriveDate.split("-").join("") + "00";
     const nextDate = "2019062100";
@@ -47,6 +47,7 @@ export default class Events extends Component {
         //if we get multiple objects, can just put them in an array
         console.log(response.data);
         this.setState({ events: response.data });
+        this.setState({loading: false})
         //console.log(response.data)
       })
       .catch(function(error) {
@@ -74,7 +75,10 @@ export default class Events extends Component {
   };
 
   render() {
-    const events = this.state.events.map(event => {
+    if(this.state.loading === true) {
+       // <img src="https://media1.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"/>
+    } 
+    const events = this.state.events.map((event,index) => {
       return (
         <Event
           title={event.title}
@@ -83,7 +87,7 @@ export default class Events extends Component {
           venue={event.venue}
           description={event.description}
           startTime={event.startTime}
-          key={event.title} // TODO: Change key ids
+          key={index} 
         />
       );
     });
@@ -91,11 +95,11 @@ export default class Events extends Component {
     return (
       <div id="eventContainer">
         <div className="leftArrow" onClick={this.checkPreviousEvent}>
-          <img className="image" src="https://img.icons8.com/flat_round/64/000000/arrow-left.png" />
+          <img className="arrowImage" src="https://img.icons8.com/flat_round/64/000000/arrow-left.png" />
         </div>
         <div className="events">{events[this.state.eventIndex]}</div>
         <div className="rightArrow" onClick={this.checkNextEvent}>
-          <img className="image" src="https://img.icons8.com/flat_round/64/000000/arrow-right.png" />
+          <img className="arrowImage" src="https://img.icons8.com/flat_round/64/000000/arrow-right.png" />
         </div>
       </div>
     );
