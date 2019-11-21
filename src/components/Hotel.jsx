@@ -19,7 +19,7 @@ export default class Hotel extends Component {
             width="100px"
           />
         </div>
-
+        <a href={this.props.url}>Booking Link</a>
         <div>Name: {this.props.name}</div>
         <div>Address: {this.props.address + " " + this.props.city + ", " + this.props.zip}</div>
         <div>Score: {this.props.review}</div>
