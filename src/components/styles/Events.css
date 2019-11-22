@@ -12,6 +12,12 @@
     padding: 5px 10px;
 }
 
+#eventContainer:hover {
+    background: grey;
+    opacity:0.75;
+    transition: all 0.25s;
+}
+
 .events {
     width:90%;
     height:100%;
