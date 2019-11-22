@@ -59,7 +59,7 @@ We hope to use more event APIs such as Meetup and Tripadvisor to diversify the e
 
 ## Deployment
 
-Please use this link access our deployed version: http://eventrip-staging.herokuapp.com/
+Please use this link access our deployed version: http://eventrip.herokuapp.com/
 
 ## Acknowledgements
 
