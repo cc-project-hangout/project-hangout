@@ -14,7 +14,7 @@ app.post("/api/city", async (req, res) => {
     const cities = await loadCities(cityName);
     res.json(cities);
   } catch (e) {
-    throw new Error("");
+    res.json([]);
   }
 });
 
@@ -24,7 +24,7 @@ app.post("/api/hotels", async (req, res) => {
     const hotels = await loadHotels(cityInfo);
     res.json(hotels);
   } catch (e) {
-    throw new Error("hotel error");
+    res.json([]);
   }
 });
 

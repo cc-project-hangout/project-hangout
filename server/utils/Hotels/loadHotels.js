@@ -1,21 +1,19 @@
 const { fetchCities, fetchLocations } = require("./fetchApi");
+const { convertCurrency } = require("./convertCurrency");
 
-const storeDestIdOfLargestCity = async cityName => {
-  const allCities = await fetchCities(cityName);
-  if (allCities === undefined) return "";
-  const destId = allCities.reduce((a, c) => {
-    if (a === 0) a = c;
-    if (c.hotels > a.hotels) a = c;
-    return a;
-  }, 0).dest_id;
+const storeCountryAndDestId = async cityName => {
+  const city = await fetchCities(cityName);
+  if (city === undefined) return "";
 
-  return destId;
+  return {
+    destId: city[0].dest_id,
+    country: city[0].country,
+  };
 };
 
 const fetchHotels = async (city, destId) => {
-  const alllocations = await fetchLocations(city.minPrice, city.maxPrice, city.arrivalDate, city.departureDate, destId);
-
-  return alllocations.map(hotel => {
+  const allLocations = await retryThreeTimes(fetchLocations, destId)(city.arrivalDate, city.departureDate, destId);
+  return allLocations.map(hotel => {
     if (hotel.available_rooms > 0) {
       return {
         minTotalPrice: hotel.min_total_price,
@@ -33,10 +31,41 @@ const fetchHotels = async (city, destId) => {
   });
 };
 
+const retryThreeTimes = (func, limit) => {
+  return async (...num) => {
+    let result = [];
+    if (limit) {
+      for (let i = 0; i < 3; i++) {
+        result = await func(num);
+        if (result.length !== 0) return result;
+      }
+    }
+    return result;
+  };
+};
+
+const filterHotelsByCurrency = async (hotels, currency) => {
+  const filteredHotels = await hotels.filter(hotel => {
+    if (hotel !== undefined && hotel.minTotalPrice !== undefined) {
+      return (
+        Number(hotel.minTotalPrice) > currency.convertedMinPrice &&
+        Number(hotel.minTotalPrice) < currency.convertedMaxPrice
+      );
+    }
+    return false;
+  });
+  return filteredHotels;
+};
+
 const loadHotels = async cityInfo => {
-  const destId = await storeDestIdOfLargestCity(cityInfo.city);
-  const cities = await fetchHotels(cityInfo, destId);
-  return cities;
+  const { destId, country } = await storeCountryAndDestId(cityInfo.city);
+  let convertedCurrency = { convertedMinPrice: cityInfo.minPrice, convertedMaxPrice: cityInfo.maxPrice };
+  if (country !== "USA") {
+    convertedCurrency = await convertCurrency(country, cityInfo.minPrice, cityInfo.maxPrice);
+  }
+  const hotels = await fetchHotels(cityInfo, destId);
+  const filteredHotels = await filterHotelsByCurrency(hotels, convertedCurrency);
+  return filteredHotels;
 };
 
 module.exports = {
