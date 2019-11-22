@@ -142,8 +142,8 @@ export default class App extends React.Component {
             />
           </div>
         )}
-        <Particles params={allParticles[Math.floor(Math.random() * allParticles.length)]} />
-        {/* <Particles params={allParticles[this.state.background]} /> */}
+        {/* <Particles params={allParticles[Math.floor(Math.random() * allParticles.length)]} /> */}
+        <Particles params={allParticles[2]} />
       </div>
     );
   }

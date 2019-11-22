@@ -1,11 +1,14 @@
 #eventContainer {
-    border: 2px black solid;
-    height: 20vw;
+    border: 3px white solid;
+    border-radius: 10px;
+    height: 25vh;
     width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
+    margin-bottom: 30px;
+    padding: 5px 10px;
 }
 
 .events {
