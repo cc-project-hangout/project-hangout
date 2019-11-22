@@ -76,7 +76,6 @@ export default class Hotels extends Component {
 
     return (
       <div className="hotels">
-        <h2>YOUR HOTEL</h2>
         <div className="selectedHotel">
           <img
             className="arrow"
