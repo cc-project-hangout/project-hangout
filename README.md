@@ -6,9 +6,9 @@ EvenTrip is an app that provides an easy way for you to come up with ideas for y
 
 ## How to Use the App
 
-[![Screenshot-2019-11-22-at-14-30-41.png](https://i.postimg.cc/MG1L3hdq/Screenshot-2019-11-22-at-14-30-41.png)](https://postimg.cc/8FPwjX20)
+[![Screenshot-2019-11-22-at-16-13-55.png](https://i.postimg.cc/vmtRX371/Screenshot-2019-11-22-at-16-13-55.png)](https://postimg.cc/WDzf1mHj)
 
-When the home screen pops up, you can input the name of the city, your arrival and departure dates, and the minimum and maximum prices for your hotel budget. When you input arrival date, the departure date will default to 1 day later, but you are free to input what you want. City and date inputs are required, and you will get a screen that tells you to input them if they are not. Otherwise, when you are ready, you can click "SEARCH" and you will get a screen showing the events and hotels that can be visited. To go back to the home screen, click "GO BACK TO SEARCH".
+When the home screen pops up, you can input the name of the city, your arrival and departure dates, and the minimum and maximum prices for your hotel budget. When you input arrival date, the departure date will default to 1 day later, but you are free to input what you want. City and date inputs are required, and you will get a screen that tells you to input them if they are not. Otherwise, when you are ready, you can click "SEARCH" and you will get a screen showing the events and hotels that can be visited. To go back to the home screen, click the logo.
 
 ## Available Scripts
 
