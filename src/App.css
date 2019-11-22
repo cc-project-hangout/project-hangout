@@ -1,3 +1,9 @@
+body {
+  width: 100%;
+  background: rgb(35,190,196);
+  background: linear-gradient(0deg, rgba(35,190,196,1) 0%, rgba(64,105,236,0.9500175070028011) 100%);
+
+}
 body,
 #root,
 .App {
@@ -9,7 +15,9 @@ body,
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #282c34;
+    background: rgb(35,190,196);
+    background: linear-gradient(0deg, rgba(35,190,196,1) 0%, rgba(64,105,236,0.9500175070028011) 100%);
+    /* opacity: 100%; */
 }
 .App {
     flex: 1 1 60%;
@@ -17,8 +25,9 @@ body,
     flex-flow: row;
     justify-content: center;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     color: white;
+    z-index: 100;
 }
 
 #blinder {
@@ -44,7 +53,7 @@ h2 {
 }
 
 .app-name {
-    flex: 0 1 70%;
+    flex: 1 1 70%;
     height: 250px;
     text-align: center;
     padding: 0;
@@ -110,16 +119,23 @@ h2 {
 }
 
 #componentContainer {
+    flex: 0 1 70%;
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .goHomeForm {
     height: 5%;
+    position: fixed;
+    left: calc(50% - 350px);
+    top: 100px;
 }
 
 .components {
@@ -153,4 +169,37 @@ h2 {
     -o-animation:gm-slidein 3s 1;
     -webkit-animation:gm-slidein 3s 1;
     animation:gm-slidein 3s 1;
+}
+
+.App:first-child {
+    position: fixed;;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.e-particles-orange{
+	position:absolute;
+	border-radius:50%;
+	top:50%;
+	left:50%;
+	z-index:5;
+	width:1000px;
+	height:600px;
+	opacity:0.4;
+	transform:translate(-50%, -50%);
+}
+
+canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  display: block;
+  position: absolute;
+  margin: 0;
 }
