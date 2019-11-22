@@ -28,15 +28,17 @@
 
 #image {
     /* margin-left:1%; */
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 150px;
+    max-height: 150px;
     width: 100%;
+    
     /* height: 100%; */
 }
 
 #venue {
     width: 100%;
     margin: 2px 5px;
+    margin-top:20px;
     font-size:2vw;
 }
 
@@ -69,10 +71,17 @@
 #eventPic {
     /* flex: 0 0 45%; */
     width:45%;
+    align-content: center;
+    text-align: center;
     /* height:60%; */
 }
 
 #eventText {
     padding-top: 10px;
-    width:100%
+    width:100%;
+    color: white;
+}
+
+#eventText a {
+    color:white;
 }

@@ -6,8 +6,10 @@
     align-items: center;
 }
 
-#hotelImage {
+.hotelImage img {
+    border: rgba(35,190,196,1) 2px solid;
+    border-radius:3px;
     max-width: 250px;
     max-height: 250px;
-    height: 100%;
+    /* height: 100%; */
 }
