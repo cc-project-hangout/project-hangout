@@ -84,14 +84,14 @@ const fetchFiltersList = async (destId, arrivalDate, departureDate) => {
   }
 };
 
-const fetchLocations = async (minPrice, maxPrice, arrivalDate, departureDate, destId) => {
+const fetchLocations = async array => {
+  const [arrivalDate, departureDate, destId] = array;
   try {
     const locations = await axios.get(`https://${BOOKING_HOST}/properties/list`, {
       params: {
         price_filter_currencycode: "USD",
         travel_purpose: "leisure",
-        categories_filter: `price0-0`,
-        free_cancellation: "%3A%3A1%2Cclass%3A%3A1%2Cclass%3A%3A0%2Cclass%3A%3A2",
+        categories_filter: "free_cancellation::1,class:0,class2",
         search_id: "none",
         order_by: "popularity",
         children_qty: 2,

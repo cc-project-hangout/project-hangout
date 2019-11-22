@@ -12,8 +12,7 @@ const storeCountryAndDestId = async cityName => {
 };
 
 const fetchHotels = async (city, destId) => {
-  const allLocations = await fetchLocations(city.minPrice, city.maxPrice, city.arrivalDate, city.departureDate, destId);
-
+  const allLocations = await retryThreeTimes(fetchLocations, destId)(city.arrivalDate, city.departureDate, destId);
   return allLocations.map(hotel => {
     if (hotel.available_rooms > 0) {
       return {
@@ -32,18 +31,40 @@ const fetchHotels = async (city, destId) => {
   });
 };
 
-const filterHotelsByCurrency = async (hotels, currency) =>
-  hotels.filter(
-    hotel =>
-      Number(hotel.minTotalPrice) > currency.convertedMinPrice &&
-      Number(hotel.minTotalPrice) < currency.convertedMaxPrice
-  );
+const retryThreeTimes = (func, limit) => {
+  return async (...num) => {
+    let result = [];
+    if (limit) {
+      for (let i = 0; i < 3; i++) {
+        result = await func(num);
+        if (result.length !== 0) return result;
+      }
+    }
+    return result;
+  };
+};
+
+const filterHotelsByCurrency = async (hotels, currency) => {
+  const filteredHotels = await hotels.filter(hotel => {
+    if (hotel !== undefined && hotel.minTotalPrice !== undefined) {
+      return (
+        Number(hotel.minTotalPrice) > currency.convertedMinPrice &&
+        Number(hotel.minTotalPrice) < currency.convertedMaxPrice
+      );
+    }
+    return false;
+  });
+  return filteredHotels;
+};
 
 const loadHotels = async cityInfo => {
   const { destId, country } = await storeCountryAndDestId(cityInfo.city);
-  const convertedCurrency = await convertCurrency(country, cityInfo.minPrice, cityInfo.maxPrice);
+  let convertedCurrency = { convertedMinPrice: cityInfo.minPrice, convertedMaxPrice: cityInfo.maxPrice };
+  if (country !== "USA") {
+    convertedCurrency = await convertCurrency(country, cityInfo.minPrice, cityInfo.maxPrice);
+  }
   const hotels = await fetchHotels(cityInfo, destId);
-  const filteredHotels = filterHotelsByCurrency(hotels, convertedCurrency);
+  const filteredHotels = await filterHotelsByCurrency(hotels, convertedCurrency);
   return filteredHotels;
 };
 
