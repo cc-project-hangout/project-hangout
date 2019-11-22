@@ -6,7 +6,8 @@
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-start;
+    justify-content: space-around;
+    align-items: center;
 }
 
 
@@ -34,10 +35,14 @@
 }
 
 #venue {
+    width: 100%;
+    margin: 2px 5px;
     font-size:2vw;
 }
 
 #startTime {
+    width: 100%;
+    margin: 2px 5px;
     font-size: 2vw;
 }
 
@@ -46,6 +51,8 @@
 }
 
 #url {
+    width: 100%;
+    margin: 2px 5px;
     margin-top:5%;
     font-size:2vw;
 }
@@ -66,5 +73,6 @@
 }
 
 #eventText {
-    width:60%
+    padding-top: 10px;
+    width:100%
 }

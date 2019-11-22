@@ -8,7 +8,7 @@ export default class Hotel extends Component {
   render() {
     return (
       <div className="hotelLayout">
-        <div className="hotelImage" id="eventPic">
+        <div className="hotelImage">
           <img
             src={this.props.image}
             alt="hotelphoto"
