@@ -1,3 +1,10 @@
 .hotelLayout {
     line-height: 1.5;
 }
+
+#image {
+    margin-left:1%;
+    max-width: 250px;
+    max-height: 250px;
+    height: 100%;
+}

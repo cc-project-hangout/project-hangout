@@ -38,7 +38,8 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App heropanel__content">
+      // <div className="App heropanel__content">
+      <div className="App">
         {this.state.dataInvalid ? (
           <div
             id="blinder"

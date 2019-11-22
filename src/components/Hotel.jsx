@@ -8,15 +8,13 @@ export default class Hotel extends Component {
   render() {
     return (
       <div className="hotelLayout">
-        <div className="hotelImage">
+        <div className="hotelImage" id="eventPic">
           <img
             src={this.props.image}
             alt="hotelphoto"
             onError={e => {
               e.target.src = "https://cdn4.iconfinder.com/data/icons/map-pins-2/256/15-512.png";
             }}
-            height="100px"
-            width="100px"
           />
         </div>
         <a href={this.props.url}>Booking Link</a>
