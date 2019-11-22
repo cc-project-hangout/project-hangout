@@ -44,8 +44,8 @@ const retryThreeTimes = (func, limit) => {
   };
 };
 
-const filterHotelsByCurrency = async (hotels, currency) => {
-  const filteredHotels = await hotels.filter(hotel => {
+const filterHotelsByCurrency = (hotels, currency) => {
+  return hotels.filter(hotel => {
     if (hotel !== undefined && hotel.minTotalPrice !== undefined) {
       return (
         Number(hotel.minTotalPrice) > currency.convertedMinPrice &&
@@ -54,17 +54,13 @@ const filterHotelsByCurrency = async (hotels, currency) => {
     }
     return false;
   });
-  return filteredHotels;
 };
 
 const loadHotels = async cityInfo => {
   const { destId, country } = await storeCountryAndDestId(cityInfo.city);
-  let convertedCurrency = { convertedMinPrice: cityInfo.minPrice, convertedMaxPrice: cityInfo.maxPrice };
-  if (country !== "USA") {
-    convertedCurrency = await convertCurrency(country, cityInfo.minPrice, cityInfo.maxPrice);
-  }
+  const convertedCurrency = await convertCurrency(country, cityInfo.minPrice, cityInfo.maxPrice);
   const hotels = await fetchHotels(cityInfo, destId);
-  const filteredHotels = await filterHotelsByCurrency(hotels, convertedCurrency);
+  const filteredHotels = filterHotelsByCurrency(hotels, convertedCurrency);
   return filteredHotels;
 };
 
