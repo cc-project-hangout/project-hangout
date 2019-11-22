@@ -1,5 +1,6 @@
 #eventContainer {
-    border: 3px white solid;
+    background: black;
+    opacity: 0.75;
     border-radius: 10px;
     /* height: 25vh; */
     width: 80%;

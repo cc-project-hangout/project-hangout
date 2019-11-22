@@ -17,7 +17,8 @@
 }
 
 .hotels {
-    border: 3px white solid;
+    background: black;
+    opacity: 0.75;
     border-radius: 10px;
     /* height: 35vh; */
     width: 80%;
@@ -26,5 +27,16 @@
     align-content: center;
     display: flex;
     margin: 0;
+    font-size: 30px;
     padding: 5px 10px;
+}
+
+.hotels a {
+    color:white;
+}
+
+.hotels:hover {
+    background: grey;
+    opacity:0.75;
+    transition: all 0.25s;
 }

@@ -67,6 +67,7 @@ h2 {
 }
 
 .app-name img {
+  cursor: pointer;
     padding-top: 50px;
     flex: 0 0 300px;
     height: 300px;
@@ -122,7 +123,8 @@ h2 {
 }
 
 #componentContainer {
-    flex: 0 1 70%;
+  font-family: 'Neucha', cursive;
+  flex: 0 1 70%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

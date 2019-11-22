@@ -56,7 +56,7 @@ export default class App extends React.Component {
           <div />
         )}
         <div className="app-name">
-          <img className="app-name" src={logo_name} alt="the logo of EvenTrip" />
+          <img className="app-name" src={logo_name} alt="the logo of EvenTrip" onClick={this.handleBackOrCancel} />
         </div>
         {!this.state.filtered ? (
           <form className="user-input" value="">
@@ -123,11 +123,6 @@ export default class App extends React.Component {
           </form>
         ) : (
           <div id="componentContainer">
-            <form className="goHomeForm" value="">
-              <button className="goHome" onClick={this.handleBackOrCancel}>
-                GO BACK TO SEARCH
-              </button>
-            </form>
             <Events
               cityName={this.state.selections.cityName}
               arriveDate={this.state.selections.arriveDate}
