@@ -6,33 +6,13 @@ export default class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [
-        {
-          title: "Loading...",
-          image:
-            "https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg",
-          venue: "Test Venue",
-          url: "https://google.com",
-          description: "This is a sick event",
-          startTime: "8:00",
-        },
-        {
-          title: "WOWSickest event ever",
-          image:
-            "https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg",
-          venue: "Test Venue",
-          url: "https://google.com",
-          description: "This is a sick event",
-          startTime: "8:00",
-        },
-      ],
+      events: [],
       eventIndex: 0,
       loading: true,
     };
   }
 
   componentDidMount() {
-
     const arrivalDate = this.props.arriveDate.split("-").join("") + "00";
     const departureDate = this.props.departDate.split("-").join("") + "00";
     const totalDates = arrivalDate + "-" + departureDate;
@@ -46,7 +26,7 @@ export default class Events extends Component {
         //if we get multiple objects, can just put them in an array
         console.log(response.data);
         this.setState({ events: response.data });
-        this.setState({loading: false})
+        this.setState({ loading: false });
         //console.log(response.data)
       })
       .catch(function(error) {
@@ -76,8 +56,8 @@ export default class Events extends Component {
   render() {
     // if(this.state.loading === true) {
     //    // <img src="https://media1.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"/>
-    // } 
-    const events = this.state.events.map((event,index) => {
+    // }
+    const events = this.state.events.map((event, index) => {
       return (
         <Event
           title={event.title}
@@ -86,7 +66,7 @@ export default class Events extends Component {
           venue={event.venue}
           description={event.description}
           startTime={event.startTime}
-          key={index} 
+          key={index}
         />
       );
     });

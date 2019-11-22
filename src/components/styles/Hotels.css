@@ -1,13 +1,14 @@
 .selectedHotel {
-    height: 100%;
+    width:90%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    /* height: 100%;
     width: 100%;
     display: flex;
-    margin: auto;
-}
-
-.arrow {
-    width: 20%;
-    height: 95px;
+    margin: auto; */
 }
 
 .hotelInfo {
@@ -18,7 +19,7 @@
 .hotels {
     border: 3px white solid;
     border-radius: 10px;
-    height: 35vh;
+    /* height: 35vh; */
     width: 80%;
     justify-content: center;
     align-items: center;

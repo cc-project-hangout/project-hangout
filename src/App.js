@@ -38,7 +38,8 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App heropanel__content">
+      // <div className="App heropanel__content">
+      <div className="App">
         {this.state.dataInvalid ? (
           <div
             id="blinder"
@@ -89,7 +90,7 @@ export default class App extends React.Component {
                 pattern="[0-9]*"
                 min="0"
                 max="9999"
-                placeholder="Hotel Min Price $"
+                placeholder="Hotel Min Price"
                 onChange={this.setHotelMin}
               ></input>
               <input
@@ -102,14 +103,14 @@ export default class App extends React.Component {
                 onChange={this.setHotelMax}
               ></input>
             </div>
-            <input
+            {/* <input
               type="number"
               pattern="[0-9]*"
               min="0"
               max="9999"
               placeholder="Play Budget $"
               onChange={this.setBudget}
-            ></input>
+            ></input> */}
 
             <div className="two-column-div">
               <button className="form-button" onClick={this.handleSeachClicked}>

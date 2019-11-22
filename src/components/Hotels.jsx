@@ -17,6 +17,7 @@ export default class Hotels extends Component {
   }
 
   getHotels = () => {
+    console.log("getting hotels");
     axios
       .post("api/hotels", {
         city: this.props.cityName,
@@ -76,18 +77,22 @@ export default class Hotels extends Component {
 
     return (
       <div className="hotels">
-        <div className="selectedHotel">
+        <div className="leftArrow">
           <img
-            className="arrow"
+            className="arrowImage"
             src="https://img.icons8.com/flat_round/64/000000/arrow-left.png"
             alt="Left"
             onClick={this.getPrevHotel}
           ></img>
+        </div>
+        <div className="selectedHotel">
           <center type="text" className="hotelInfo">
             {hotels[this.state.currentHotel]}
           </center>
+        </div>
+        <div className="rightArrow">
           <img
-            className="arrow"
+            className="arrowImage"
             src="https://img.icons8.com/flat_round/64/000000/arrow-right.png"
             alt="Right"
             onClick={this.getNextHotel}

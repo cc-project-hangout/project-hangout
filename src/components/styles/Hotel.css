@@ -1,3 +1,13 @@
 .hotelLayout {
     line-height: 1.5;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#hotelImage {
+    max-width: 250px;
+    max-height: 250px;
+    height: 100%;
 }
